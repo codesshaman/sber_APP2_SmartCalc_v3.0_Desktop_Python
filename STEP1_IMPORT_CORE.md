@@ -8,6 +8,8 @@
 
 В этом нам поможет [библиотека ctypes](https://habr.com/ru/company/otus/blog/649087/).
 
+Узнать подробности работы данной библиотеки можно, например, из [этого плейлиста](https://www.youtube.com/watch?v=neexS0HK9TY&list=PLHwXkLexR9MCqqr5hD_8o5rbSXYHtfFiB).
+
 ## Шаг 1. Установка Python
 
 Нам нужен Python конкретной версии: 3.11
