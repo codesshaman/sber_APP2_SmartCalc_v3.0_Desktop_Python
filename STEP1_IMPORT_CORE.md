@@ -6,7 +6,7 @@
 
 Пожалуй, с этого мы и начнём её решение.
 
-В этом нам поможет [библиотека Ctypes](https://habr.com/ru/company/otus/blog/649087/).
+В этом нам поможет [библиотека ctypes](https://habr.com/ru/company/otus/blog/649087/).
 
 ## Шаг 1. Установка Python
 
