@@ -26,7 +26,12 @@ class CalcWindow(QMainWindow):
         self.btn.setText("C")
         self.btn.clicked.connect(btn_fnk)
 
+    def __del__(self):
+        "Функция удаления класса"
+        print("Программа завершена")
+
 def calculator():
+    "Функция вызова приложения"
     app = QApplication(sys.argv)
     window = CalcWindow()
     window.show()
