@@ -9,6 +9,7 @@ class CalcWindow(QMainWindow):
     "Класс основного окна приложения"
     # Инициализация класса
     def __init__(self):
+        print("Инициализация основного окна приложения")
         # Заголовок окна
         super(CalcWindow, self).__init__()
         self.setWindowTitle("SmartCalc v3.0.0")
