@@ -21,6 +21,7 @@ class CalcWindow(QMainWindow):
     "Класс основного окна приложения"
     # Инициализация класса
     def __init__(self):
+        super().__init__()
         super(CalcWindow, self).__init__()
         if debug:
             print("Инициализация основного окна приложения")
@@ -34,8 +35,9 @@ class CalcWindow(QMainWindow):
         self.main_text.move(10, 10)
         self.main_text.setFixedWidth(480)
         # Кнопки
-        self.btn = QtWidgets.QPushButton(self)
-        self.btn.move(10, 70)
+        self.btn = SimpleButton()
+        self.btn.coordinates(10, 70)
+        # self.btn.move(10, 70)
         self.btn.setFixedWidth(65)
         self.btn.setText("C")
         self.btn.clicked.connect(press_button)

@@ -10,6 +10,7 @@ class SimpleButton(QPushButton):
     "Класс обычной короткой кнопки"
     # Инициализация класса
     def __init__(self):
+        super().__init__()
         if debug:
             print("Инициализация короткой кнопки")
         self.btn = QtWidgets.QPushButton(self)
