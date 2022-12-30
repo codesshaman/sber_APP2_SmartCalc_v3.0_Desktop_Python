@@ -1,8 +1,10 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow
+import tkinter as tk
 from views.buttons_views import *
+from presenter.press_buttons import *
 import sys
 
 print(sys.path)
+
 def check_debug():
     file = open("debug.txt")
     check = (file.read())
@@ -12,7 +14,7 @@ def check_debug():
     elif check == 'false':
         return False
     else:
-        return 111
+        return None
 
 debug = check_debug()
 
@@ -35,12 +37,12 @@ class CalcWindow(QMainWindow):
         self.main_text.move(10, 10)
         self.main_text.setFixedWidth(480)
         # Кнопки
-        self.btn = SimpleButton()
-        self.btn.coordinates(10, 70)
-        # self.btn.move(10, 70)
-        self.btn.setFixedWidth(65)
-        self.btn.setText("C")
-        self.btn.clicked.connect(press_button)
+        self.btn3 = QtWidgets.QPushButton(self)
+        self.btn3.move(10, 70)
+        self.btn3.setFixedWidth(65)
+        self.btn3.setText("C")
+        self.btn3.clicked.connect(press_button)
+        self.btn2 = Button(90, 100, 65, "D")
 
     def __del__(self):
         "Функция удаления класса"
