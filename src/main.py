@@ -1,16 +1,59 @@
-# This is a sample Python script.
+from PyQt6.QtWidgets import QApplication, QMainWindow
+from views.buttons_views import *
+import sys
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+print(sys.path)
+def check_debug():
+    file = open("debug.txt")
+    check = (file.read())
+    check = (file.read())
+    if check == 'true':
+        return True
+    elif check == 'false':
+        return False
+    else:
+        return 111
 
+debug = check_debug()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# Класс основного окна
+class CalcWindow(QMainWindow):
+    "Класс основного окна приложения"
+    # Инициализация класса
+    def __init__(self):
+        super(CalcWindow, self).__init__()
+        if debug:
+            print("Инициализация основного окна приложения")
+        # Заголовок окна
+        super(CalcWindow, self).__init__()
+        self.setWindowTitle("SmartCalc v3.0.0")
+        self.setGeometry(500, 300, 450, 300)
+        # Цифровое поле
+        self.main_text = QtWidgets.QLabel(self)
+        self.main_text.setText("1234567890")
+        self.main_text.move(10, 10)
+        self.main_text.setFixedWidth(480)
+        # Кнопки
+        self.btn = QtWidgets.QPushButton(self)
+        self.btn.move(10, 70)
+        self.btn.setFixedWidth(65)
+        self.btn.setText("C")
+        self.btn.clicked.connect(press_button)
 
+    def __del__(self):
+        "Функция удаления класса"
+        if debug:
+            print("Программа завершена")
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def calculator():
+    "Функция вызова приложения"
+    app = QApplication(sys.argv)
+    window = CalcWindow()
+    window.show()
+    sys.exit(app.exec())
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    "Функция запуска приложения"
+    if debug:
+        print("Программа запущена")
+    calculator()
