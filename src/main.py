@@ -1,11 +1,15 @@
 # from tkinter import *
+from turtle import width
+
 from views.main_window import CalcWindow
+from views.graphwindow import GraphWindow
 # from presenter.press_buttons import *
+from model.debug import check_debug
 import sys
 
-print(sys.path)
+debug = check_debug()
 
-# Класс основного окна
+print(sys.path)
 
 window = CalcWindow()
 window.run()
@@ -19,4 +23,6 @@ if __name__ == "__main__":
     if debug:
         print("Программа запущена")
     window = CalcWindow()
+    window.open_graph(400, 500)
+
     window.run()

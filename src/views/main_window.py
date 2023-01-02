@@ -1,11 +1,13 @@
 from tkinter import *
+from views.graphwindow import GraphWindow
 from model.debug import check_debug
+
 debug = check_debug()
 
 class CalcWindow():
     "Класс основного окна приложения"
     # Инициализация класса
-    def __init__(self, width="450", height="350", title="SmartCalc_v3", resizable=(0, 0)):
+    def __init__(self, width="550", height="350", title="SmartCalc_v3", resizable=(0, 0)):
         super().__init__()
         if debug:
             print("Инициализация основного окна приложения")
@@ -24,5 +26,7 @@ class CalcWindow():
         if debug:
             print("Программа завершена")
 
-    def open_graph(self):
+    def open_graph(self, width, height, title="График", resizable=(0, 0), icon=None):
         "Функция открытия окна графика"
+        GraphWindow(self.win, width, height, title, resizable, icon)
+
