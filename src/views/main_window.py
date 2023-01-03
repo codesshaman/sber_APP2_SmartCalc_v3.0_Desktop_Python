@@ -1,6 +1,7 @@
 from tkinter import *
 from views.graph_window import GraphWindow
 from model.debug import check_debug
+from model.buttons_actions import *
 from views.buttons_views import CalcButton
 debug = check_debug()
 
@@ -43,9 +44,8 @@ class CalcWindow():
         # Label(buttons_frame, text="Здесь будут кнопки", bg="#b0b0b0", relief=RIDGE, font="Calibri 36").pack(side=TOP)
 
     def open_buttons(self):
-        Button(self.win, width=3, height=1, text="CCC", justify=LEFT).pack(padx=20, pady=5, anchor=NW)
-        b2 = CalcButton(parent="win", text="CCC", width=3, height=1)
-        b2.pack(padx=20, pady=5, anchor=NW)
+        # Button(self.win, width=3, height=1, text="CCC", justify=LEFT).pack(padx=20, pady=5, anchor=NW)
+        b2 = CalcButton("win", "CCC", "#ABA9A9", 3, 1, func=btn_fnk).pack(padx=20, pady=5, anchor=NW)
 
     def open_graph(self, width, height, title="График", resizable=(0, 0), icon=None):
         "Функция открытия окна графика"
