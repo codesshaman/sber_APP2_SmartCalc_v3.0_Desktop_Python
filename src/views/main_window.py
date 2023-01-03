@@ -4,12 +4,13 @@ from model.debug import check_debug
 from views.math_pannel import math_pannel
 from views.numbers_pannel import nums_pannel
 from views.operations_pannel import operations_panel
+from views.credit_deposit_view import credit_deposit_buttons
 debug = check_debug()
 
 class CalcWindow():
     "Класс основного окна приложения"
     # Инициализация класса
-    def __init__(self, width="555", height="410", title="SmartCalc_v3", resizable=(0, 0)):
+    def __init__(self, width="555", height="444", title="SmartCalc_v3", resizable=(0, 0)):
         super().__init__()
         if debug:
             print("Инициализация основного окна приложения")
@@ -49,6 +50,7 @@ class CalcWindow():
         math_pannel(0, 0)
         nums_pannel(225, 0)
         operations_panel(225, 0)
+        credit_deposit_buttons()
 
     def open_graph(self, width, height, title="График", resizable=(0, 0), icon=None):
         "Функция открытия окна графика"
