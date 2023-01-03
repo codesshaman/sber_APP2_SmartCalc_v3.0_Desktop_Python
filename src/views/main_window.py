@@ -1,14 +1,15 @@
 from tkinter import *
 from views.graph_window import GraphWindow
 from model.debug import check_debug
-from model.buttons_actions import *
-from views.buttons_views import CalcButton
+from views.math_pannel import math_pannel
+from views.numbers_pannel import nums_pannel
+from views.operations_pannel import operations_panel
 debug = check_debug()
 
 class CalcWindow():
     "Класс основного окна приложения"
     # Инициализация класса
-    def __init__(self, width="550", height="350", title="SmartCalc_v3", resizable=(0, 0)):
+    def __init__(self, width="555", height="410", title="SmartCalc_v3", resizable=(0, 0)):
         super().__init__()
         if debug:
             print("Инициализация основного окна приложения")
@@ -35,17 +36,19 @@ class CalcWindow():
 
     def open_wigets(self):
         "Функция открытия виджетов"
-        # Рамки основных секций
-        display_frame = LabelFrame(self.win, bg="#808080", text="ЭЛЕКТРОНИКА - 224")
+        # Секция дисплея
+        display_frame = LabelFrame(self.win, bg="#808080", text="ЭЛЕКТРОНИКА МК - 4221")
         buttons_frame = Frame(self.win, borderwidth=2, bg="#b0b0b0", relief=RIDGE)
         display_frame.pack(padx=10, pady=10, ipadx=15, ipady=5, fill=X)
-        buttons_frame.place(x=10, y=100, width=530, height=240)
-        Label(display_frame, text="0123456789", bg="#b0b0b0", relief=RIDGE, font="Calibri 36").pack(side=TOP)
-        # Label(buttons_frame, text="Здесь будут кнопки", bg="#b0b0b0", relief=RIDGE, font="Calibri 36").pack(side=TOP)
+        Entry(display_frame, width=16, bg="#b0b0b0", relief=RIDGE, font="Calibri 36").pack(side=TOP)
+        # Секция кнопок
+        buttons_frame.place(x=10, y=100, width=535, height=260)
 
     def open_buttons(self):
-        # Button(self.win, width=3, height=1, text="CCC", justify=LEFT).pack(padx=20, pady=5, anchor=NW)
-        b2 = CalcButton("win", "CCC", "#ABA9A9", 3, 1, func=btn_fnk).pack(padx=20, pady=5, anchor=NW)
+        # Панель сложных математических функций
+        math_pannel(0, 0)
+        nums_pannel(225, 0)
+        operations_panel(225, 0)
 
     def open_graph(self, width, height, title="График", resizable=(0, 0), icon=None):
         "Функция открытия окна графика"
