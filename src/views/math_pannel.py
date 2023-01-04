@@ -1,8 +1,9 @@
 from views.buttons_views import CalcButton
 from presenter.math_buttons_functions import *
-def math_pannel(x, y):
+def math_pannel(parent, x, y):
     "Панель сложных математических операций"
-    CalcButton("win", "С", "#ABA9A9", 3, 1, clean).place(width=65, height=42, x=x + 20, y=y + 110)
+    func = MathButtonsActions(parent)
+    CalcButton("win", "С", "#ABA9A9", 3, 1, func.press_clean).place(width=65, height=42, x=x + 20, y=y + 110)
     CalcButton("win", "0.3", "#ABA9A9", 3, 1, third).place(width=65, height=42, x=x + 95, y=y + 110)
     CalcButton("win", "= X", "#ABA9A9", 3, 1, x_func).place(width=65, height=42, x=x + 170, y=y + 110)
     CalcButton("win", "sin", "#ABA9A9", 3, 1, sinus).place(width=65, height=42, x=x + 20, y=y + 160)
