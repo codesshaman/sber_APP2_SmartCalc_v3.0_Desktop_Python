@@ -43,10 +43,14 @@ class CalcWindow():
         self.buttons_frame.place(x=10, y=100, width=535, height=260)
 
     def open_buttons(self):
-        "Метод открытия панелей с кнопками"
+        "Методы открытия панелей с кнопками"
+        # Панель математических операций
         math_pannel(self, 0, 0)
+        # Числовая панель
         nums_pannel(self, 225, 0)
+        # Панель простых операций
         operations_panel(self, 225, 0)
+        # Кнопки кредита и депозита
         credit_deposit_buttons()
 
     def open_graph(self, width, height, title="График", resizable=(0, 0), icon=None):
@@ -60,6 +64,9 @@ class CalcWindow():
     def display(self, symbol):
         "Метод вывода чисел на дисплей"
         self.input_display.insert(END, symbol)
+
+    def get(self):
+        return self.input_display.get()
 
     def run(self):
         "Метод запуска основного окна"

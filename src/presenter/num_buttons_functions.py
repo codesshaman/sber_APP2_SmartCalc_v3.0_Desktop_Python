@@ -34,5 +34,7 @@ class NumButtonsActions():
     def press_nine(self):
         self.parent.display(9)
 
-def press_button_equal():
-    print("Press =")
+    def calculate(self):
+        value = self.parent.get()
+        self.parent.clear()
+        self.parent.display(eval(value))

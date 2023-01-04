@@ -6,7 +6,6 @@ from presenter.num_buttons_functions import *
 def nums_pannel(parent, x, y):
     "Панель простых чисел"
     func = NumButtonsActions(parent)
-    # CalcButton("win", "1", "#3b3e41", 3, 1, NumButtonsActions(parent, 1)).place(width=65, height=42, x=x + 20, y=y + 260)
     CalcButton("win", "1", "#3b3e41", 3, 1, func.press_one).place(width=65, height=42, x=x + 20, y=y + 260)
     CalcButton("win", "2", "#3b3e41", 3, 1, func.press_two).place(width=65, height=42, x=x + 95, y=y + 260)
     CalcButton("win", "3", "#3b3e41", 3, 1, func.press_three).place(width=65, height=42, x=x + 170, y=y + 260)
@@ -17,4 +16,4 @@ def nums_pannel(parent, x, y):
     CalcButton("win", "8", "#3b3e41", 3, 1, func.press_eight).place(width=65, height=42, x=x + 95, y=y + 160)
     CalcButton("win", "9", "#3b3e41", 3, 1, func.press_nine).place(width=65, height=42, x=x + 170, y=y + 160)
     CalcButton("win", "0", "#3b3e41", 3, 1, func.press_null).place(width=65, height=42, x=x + 20, y=y + 310)
-    CalcButton("win", "=", "#94b5f2", 3, 1, press_button_equal).place(width=140, height=42, x=x + 95, y=y + 310)
+    CalcButton("win", "=", "#94b5f2", 3, 1, func.calculate).place(width=140, height=42, x=x + 95, y=y + 310)
