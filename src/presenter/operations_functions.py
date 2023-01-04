@@ -1,23 +1,29 @@
-def left_bracket():
-    print("Press (")
+class OpButtonsActions():
+    def __init__(self, parent):
+        super().__init__()
+        self.parent = parent
+        # self.num = num
 
-def right_bracket():
-    print("Press )")
+    def press_left_bracket(self):
+        self.parent.display("(")
 
-def percent():
-    print("Press %")
+    def press_right_bracket(self):
+        self.parent.display(")")
 
-def division():
-    print("Press /")
+    def press_percent(self):
+        self.parent.display("%")
 
-def multiplication():
-    print("Press *")
+    def press_division(self):
+        self.parent.display("/")
 
-def subtraction():
-    print("Press -")
+    def press_multiplication(self):
+        self.parent.display("x")
 
-def addition():
-    print("Press +")
+    def press_subtraction(self):
+        self.parent.display("-")
 
-def dot():
-    print("Press .")
+    def press_addition(self):
+        self.parent.display("+")
+
+    def press_dot(self):
+        self.parent.display(".")

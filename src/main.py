@@ -10,8 +10,6 @@ import sys
 debug = check_debug()
 graph_launch = False
 
-print(sys.path)
-
 def graph_show():
     "Функция открытия окна графика"
     if debug:

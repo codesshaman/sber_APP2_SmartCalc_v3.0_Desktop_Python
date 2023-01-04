@@ -1,4 +1,3 @@
-
 def open_graph_button_press():
     print("Open Graph")
 

@@ -1,33 +1,38 @@
+class NumButtonsActions():
+    def __init__(self, parent):
+        super().__init__()
+        self.parent = parent
+        # self.num = num
 
-def press_button_0():
-    print("Press 0")
+    def press_null(self):
+        self.parent.display(0)
 
-def press_button_1():
-    print("Press 1")
+    def press_one(self):
+        self.parent.display(1)
 
-def press_button_2():
-    print("Press 2")
+    def press_two(self):
+        self.parent.display(2)
 
-def press_button_3():
-    print("Press 3")
+    def press_three(self):
+        self.parent.display(3)
 
-def press_button_4():
-    print("Press 4")
+    def press_four(self):
+        self.parent.display(4)
 
-def press_button_5():
-    print("Press 5")
+    def press_five(self):
+        self.parent.display(5)
 
-def press_button_6():
-    print("Press 6")
+    def press_six(self):
+        self.parent.display(6)
 
-def press_button_7():
-    print("Press 7")
+    def press_seven(self):
+        self.parent.display(7)
 
-def press_button_8():
-    print("Press 8")
+    def press_eight(self):
+        self.parent.display(8)
 
-def press_button_9():
-    print("Press 9")
+    def press_nine(self):
+        self.parent.display(9)
 
 def press_button_equal():
     print("Press =")
