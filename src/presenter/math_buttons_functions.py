@@ -2,18 +2,17 @@ class MathButtonsActions():
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
-        # self.num = num
 
     def press_clean(self):
-        self.parent.clear()
+        self.parent.clean()
 
-    def press_one(self):
-        self.parent.display(1)
+    def clean_last(self):
+        self.parent.clean_last()
 
-    def press_two(self):
+    def press_X(self):
         self.parent.display(2)
 
-    def press_three(self):
+    def press_sin(self):
         self.parent.display(3)
 
     def press_four(self):

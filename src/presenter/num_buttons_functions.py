@@ -1,3 +1,5 @@
+from model.calculate import *
+
 class NumButtonsActions():
     def __init__(self, parent):
         super().__init__()
@@ -36,5 +38,5 @@ class NumButtonsActions():
 
     def calculate(self):
         value = self.parent.get()
-        self.parent.clear()
-        self.parent.display(eval(value))
+        self.parent.clean()
+        self.parent.display(math_eval(value))

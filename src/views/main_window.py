@@ -57,9 +57,13 @@ class CalcWindow():
         "Метод открытия окна графика"
         GraphWindow(self.win, width, height, title, resizable, icon)
 
-    def clear(self):
+    def clean(self):
         "Метод сброса ввода"
         self.input_display.delete(0, END)
+
+    def clean_last(self):
+        "Метод стирания последнего символа"
+        self.input_display.delete(0, -2)
 
     def display(self, symbol):
         "Метод вывода чисел на дисплей"
