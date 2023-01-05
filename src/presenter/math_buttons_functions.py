@@ -1,3 +1,5 @@
+from model.calculate import *
+
 class MathButtonsActions():
     def __init__(self, parent):
         super().__init__()
@@ -9,69 +11,56 @@ class MathButtonsActions():
     def clean_last(self):
         self.parent.clean_last()
 
-    def press_X(self):
-        self.parent.display(2)
+    def press_pi(self):
+        self.parent.display(math_pi())
+
+    def press_e(self):
+        self.parent.display(math_e())
 
     def press_sin(self):
-        self.parent.display(3)
+        value = self.parent.get()
+        self.parent.clean()
+        self.parent.display(math_sin(value))
 
-    def press_four(self):
-        self.parent.display(4)
+    def press_cos(self):
+        value = self.parent.get()
+        self.parent.clean()
+        self.parent.display(math_cos(value))
 
-    def press_five(self):
-        self.parent.display(5)
+    def press_asin(self):
+        value = self.parent.get()
+        self.parent.clean()
+        self.parent.display(math_asin(value))
 
-    def press_six(self):
-        self.parent.display(6)
+    def press_acos(self):
+        value = self.parent.get()
+        self.parent.clean()
+        self.parent.display(math_acos(value))
 
-    def press_seven(self):
-        self.parent.display(7)
+    def press_tan(self):
+        value = self.parent.get()
+        self.parent.clean()
+        self.parent.display(math_tan(value))
 
-    def press_eight(self):
-        self.parent.display(8)
+    def press_atan(self):
+        value = self.parent.get()
+        self.parent.clean()
+        self.parent.display(math_atan(value))
 
-    def press_nine(self):
-        self.parent.display(9)
+    def press_ln(self):
+        value = self.parent.get()
+        self.parent.clean()
+        self.parent.display(math_ln(value))
 
+    def press_sqrt(self):
+        value = self.parent.get()
+        self.parent.clean()
+        self.parent.display(math_sqrt(value))
+
+    def press_power(self):
+        value = self.parent.get()
+        self.parent.clean()
+        self.parent.display(math_power(value))
 
 def open_graph_button_press():
     print("Open Graph")
-
-def clean():
-    print("clean")
-
-def third():
-    print("0,3")
-
-def x_func():
-    print("= X")
-
-def sinus():
-    print("sinus")
-
-def arcsin():
-    print("arcsinus")
-
-def ln():
-    print("natural logariphm")
-
-def cosinus():
-    print("cosinus")
-
-def arccos():
-    print("arccos")
-
-def log():
-    print("logariphm")
-
-def tangens():
-    print("tangens")
-
-def arctan():
-    print("arctangens")
-
-def sqrt():
-    print("sqrt")
-
-def exponentiation():
-    print("exponentiation")

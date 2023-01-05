@@ -2,7 +2,6 @@ class OpButtonsActions():
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
-        # self.num = num
 
     def press_left_bracket(self):
         self.parent.display("(")
@@ -17,7 +16,7 @@ class OpButtonsActions():
         self.parent.display("/")
 
     def press_multiplication(self):
-        self.parent.display("x")
+        self.parent.display("*")
 
     def press_subtraction(self):
         self.parent.display("-")

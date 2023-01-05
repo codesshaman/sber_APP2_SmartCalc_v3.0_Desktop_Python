@@ -24,7 +24,7 @@ class CalcWindow():
         # Секция дисплея
         self.display_frame = LabelFrame(self.win, bg="#808080", text="ЭЛЕКТРОНИКА МК - 4221")
         # Окно ввода
-        self.input_display = Entry(self.display_frame, width=16, bg="#b0b0b0", relief=RIDGE, font="Calibri 36")
+        self.input_display = Entry(self.display_frame, width=17, bg="#b0b0b0", relief=RIDGE, font="Calibri 36")
         # Секция кнопок
         self.buttons_frame = Frame(self.win, borderwidth=2, bg="#b0b0b0", relief=RIDGE)
 
@@ -63,7 +63,8 @@ class CalcWindow():
 
     def clean_last(self):
         "Метод стирания последнего символа"
-        self.input_display.delete(0, -2)
+        length = len(self.input_display.get())
+        self.input_display.delete(length-1)
 
     def display(self, symbol):
         "Метод вывода чисел на дисплей"
