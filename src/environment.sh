@@ -1,8 +1,15 @@
-python3.10 -m venv venv
+#!/bin/bash
+if [ ! -d "venv" ]; then
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install --upgrade pip
+fi
+if [ ! -f "requirements.txt" ]; then
+    touch requirements.txt
+    pip install tk
+    pip freeze >> requirements.txt
+  else
+    pip install -r requirements.txt
+    pip freeze
+fi
 source venv/bin/activate
-pip install --upgrade pip
-pip install tk
-touch requirements.txt
-pip freeze >> requirements.txt
-pip install -r requirements.txt
-pip freeze
