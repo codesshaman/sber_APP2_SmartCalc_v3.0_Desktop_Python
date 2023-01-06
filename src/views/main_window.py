@@ -7,7 +7,6 @@ from presenter.math_buttons_functions import *
 from views.operations_pannel import operations_panel
 from views.credit_deposit_view import credit_deposit_buttons
 
-
 class CalcWindow():
     "Класс основного окна приложения"
     # Инициализация класса

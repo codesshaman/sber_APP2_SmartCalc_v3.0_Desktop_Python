@@ -1,4 +1,5 @@
 from model.calculate import *
+from views.open_pannels import *
 
 class MathButtonsActions():
     def __init__(self, parent):
@@ -62,5 +63,6 @@ class MathButtonsActions():
         self.parent.clean()
         self.parent.display(math_power(value))
 
-def open_graph_button_press():
-    print("Open Graph")
+    def open_graph(self):
+        print("Open Graph")
+
