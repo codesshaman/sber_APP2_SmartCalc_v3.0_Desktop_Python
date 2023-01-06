@@ -1,4 +1,5 @@
 import math
+import sympy as smp
 
 def dot_find(value):
     return value.find(".")
@@ -40,7 +41,10 @@ def math_atan(value):
     return math.atan(types_convert(value))
 
 def math_sqrt(value):
-    return math.sqrt(types_convert(value))
+    return smp.sqrt(types_convert(value))
+
+# def math_sqrt(value):
+#     return math.sqrt(types_convert(value))
 
 def math_power(value):
     return pow(types_convert(value), 2)

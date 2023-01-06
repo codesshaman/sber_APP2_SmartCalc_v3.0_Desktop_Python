@@ -1,20 +1,17 @@
 from tkinter import *
-from model.debug import check_debug
+from  presenter.key_actions import *
 from views.math_pannel import math_pannel
 from views.graph_window import GraphWindow
 from views.numbers_pannel import nums_pannel
 from views.operations_pannel import operations_panel
 from views.credit_deposit_view import credit_deposit_buttons
 
-debug = check_debug()
 
 class CalcWindow():
     "Класс основного окна приложения"
     # Инициализация класса
     def __init__(self, width="555", height="444", title="SmartCalc_v3", resizable=(0, 0)):
         super().__init__()
-        if debug:
-            print("Инициализация основного окна приложения")
         self.win = Tk()
         self.win.title(title)
         self.win.geometry(f"{width}x{height}+200+200")
@@ -27,11 +24,10 @@ class CalcWindow():
         self.input_display = Entry(self.display_frame, width=17, bg="#b0b0b0", relief=RIDGE, font="Calibri 36")
         # Секция кнопок
         self.buttons_frame = Frame(self.win, borderwidth=2, bg="#b0b0b0", relief=RIDGE)
+        self.win.bind('<Key>', press_key)
 
     def __del__(self):
         "Метод удаления основного окна"
-        if debug:
-            print("Программа завершена")
 
     def open_wigets(self):
         "Метод открытия виджетов"

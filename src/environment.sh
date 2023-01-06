@@ -7,6 +7,7 @@ fi
 if [ ! -f "requirements.txt" ]; then
     touch requirements.txt
     pip install tk
+    pip install sympy
     pip freeze >> requirements.txt
   else
     pip install -r requirements.txt
