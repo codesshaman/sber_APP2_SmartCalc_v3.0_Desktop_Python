@@ -1,8 +1,9 @@
 from tkinter import *
-from  presenter.key_actions import *
 from views.math_pannel import math_pannel
 from views.graph_window import GraphWindow
 from views.numbers_pannel import nums_pannel
+from presenter.num_buttons_functions import *
+from presenter.math_buttons_functions import *
 from views.operations_pannel import operations_panel
 from views.credit_deposit_view import credit_deposit_buttons
 
@@ -24,7 +25,6 @@ class CalcWindow():
         self.input_display = Entry(self.display_frame, width=17, bg="#b0b0b0", relief=RIDGE, font="Calibri 36")
         # Секция кнопок
         self.buttons_frame = Frame(self.win, borderwidth=2, bg="#b0b0b0", relief=RIDGE)
-        self.win.bind('<Key>', press_key)
 
     def __del__(self):
         "Метод удаления основного окна"
@@ -53,6 +53,28 @@ class CalcWindow():
         "Метод открытия окна графика"
         GraphWindow(self.win, width, height, title, resizable, icon)
 
+    def press_key(self, event):
+        "Метод вызова функций по нажатию клавиш"
+        # print(event)
+        func = NumButtonsActions(self)
+        matf = MathButtonsActions(self)
+        if event.char in '0123456789+-*/()^%':
+            self.display(event.char)
+        elif event.char in "\r\x03":
+            func.calculate()
+        elif event.char == '\x7f':
+            self.clean_last()
+        elif event.char in 'cCсС':
+            self.clean()
+        elif event.char in 'pPзЗ':
+            matf.press_pi()
+        elif event.char in 'eEуУ':
+            matf.press_e()
+
+    def key_catch(self):
+        "Метод захвата нажатий клавиш"
+        self.win.bind('<Key>', self.press_key)
+
     def clean(self):
         "Метод сброса ввода"
         self.input_display.delete(0, END)
@@ -67,10 +89,12 @@ class CalcWindow():
         self.input_display.insert(END, symbol)
 
     def get(self):
+        "Метод захвата содержимого дисплея"
         return self.input_display.get()
 
     def run(self):
         "Метод запуска основного окна"
         self.open_wigets()
         self.open_buttons()
+        self.key_catch()
         self.win.mainloop()
