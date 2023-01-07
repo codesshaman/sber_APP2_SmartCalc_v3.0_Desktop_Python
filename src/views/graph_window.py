@@ -19,11 +19,9 @@ class GraphWindow:
         self.graphic_frame.create_line(0, my / 2, mx, my / 2, fill="#6b0f0f", arrow=LAST)
         self.graphic_frame.create_line(mx / 2, 0, mx / 2, my, fill="#6b0f0f", arrow=BOTH)
         self.graphic_frame.pack(padx=10, pady=10)
-        # Деления на оси X
-        for i in range(0, mx, 40):
+        # Деления на осях координат
+        for i in range(0, max(mx, my), 40):
             self.graphic_frame.create_line(i, my/2 - 5, i, my/2 + 5, fill="#6b0f0f")
-        # Деления на оси Y
-        for i in range(0, my, 40):
             self.graphic_frame.create_line(mx / 2 - 5, i, mx / 2 + 5, i, fill="#6b0f0f")
     def __del__(self):
         "Метод удаления окна графика"
