@@ -1,4 +1,4 @@
-from views.buttons_views import CalcButton
+from views.buttons_panels.buttons_views import CalcButton
 from presenter.credit_deposit_windows import *
 
 def credit_deposit_buttons():

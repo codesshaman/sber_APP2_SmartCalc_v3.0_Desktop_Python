@@ -1,5 +1,5 @@
 from model.calculate import *
-from views.open_pannels import *
+from views.graph_window import graph_show
 
 class MathButtonsActions():
     def __init__(self, parent):
@@ -65,4 +65,4 @@ class MathButtonsActions():
 
     def open_graph(self):
         print("Open Graph")
-
+        self.parent.open_graph(425, 500)

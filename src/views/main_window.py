@@ -1,10 +1,10 @@
 from tkinter import *
-from views.math_pannel import math_pannel
+from views.buttons_panels.math_pannel import math_pannel
 from views.graph_window import GraphWindow
-from views.numbers_pannel import nums_pannel
-from presenter.num_buttons_functions import *
-from presenter.math_buttons_functions import *
-from views.operations_pannel import operations_panel
+from views.buttons_panels.numbers_pannel import nums_pannel
+from presenter.buttons_functions.num_buttons_functions import *
+from presenter.buttons_functions.math_buttons_functions import *
+from views.buttons_panels.operations_pannel import operations_panel
 from views.credit_deposit_view import credit_deposit_buttons
 
 class CalcWindow():
@@ -50,11 +50,11 @@ class CalcWindow():
 
     def open_graph(self, width, height, title="График", resizable=(0, 0), icon=None):
         "Метод открытия окна графика"
-        GraphWindow(self.win, width, height, title, resizable, icon)
+        graph = GraphWindow(self.win, width, height, title, resizable, icon)
 
     def press_key(self, event):
         "Метод вызова функций по нажатию клавиш"
-        print(event)
+        # print(event)
         func = NumButtonsActions(self)
         matf = MathButtonsActions(self)
         if event.char in '0123456789+-*/()^%':

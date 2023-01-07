@@ -1,7 +1,7 @@
-from views.buttons_views import CalcButton
+from views.buttons_panels.buttons_views import CalcButton
 # from main import window
 # from views.main_window import CalcWindow
-from presenter.num_buttons_functions import *
+from presenter.buttons_functions.num_buttons_functions import *
 
 def nums_pannel(parent, x, y):
     "Панель простых чисел"

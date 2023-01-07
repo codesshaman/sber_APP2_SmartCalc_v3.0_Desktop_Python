@@ -1,5 +1,5 @@
-from views.buttons_views import CalcButton
-from presenter.operations_functions import *
+from views.buttons_panels.buttons_views import CalcButton
+from presenter.buttons_functions.operations_functions import *
 def operations_panel(parent, x, y):
     "Панель математических операций"
     func = OpButtonsActions(parent)
