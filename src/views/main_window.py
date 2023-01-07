@@ -54,14 +54,18 @@ class CalcWindow():
 
     def press_key(self, event):
         "Метод вызова функций по нажатию клавиш"
-        # print(event)
+        print(event)
         func = NumButtonsActions(self)
         matf = MathButtonsActions(self)
         if event.char in '0123456789+-*/()^%':
             self.display(event.char)
-        elif event.char in "\r\x03":
+        elif event.char == "\r":
+            func.calculate()
+        elif event.char == "\x03":
             func.calculate()
         elif event.char == '\x7f':
+            self.clean_last()
+        elif event.char == '\x08':
             self.clean_last()
         elif event.char in 'cCсС':
             self.clean()
