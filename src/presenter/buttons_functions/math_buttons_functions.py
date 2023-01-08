@@ -1,5 +1,4 @@
 from model.calculate import *
-from views.graph_window import graph_show
 
 class MathButtonsActions():
     def __init__(self, parent):
@@ -15,8 +14,10 @@ class MathButtonsActions():
     def press_pi(self):
         self.parent.display(math_pi())
 
-    def press_e(self):
-        self.parent.display(math_e())
+    def press_log(self):
+        value = self.parent.get()
+        self.parent.clean()
+        self.parent.display(math_log(value))
 
     def press_sin(self):
         value = self.parent.get()
@@ -64,5 +65,4 @@ class MathButtonsActions():
         self.parent.display(math_power(value))
 
     def open_graph(self):
-        print("Open Graph")
-        self.parent.open_graph(425, 500)
+        self.parent.open_graph(425, 500, 30)

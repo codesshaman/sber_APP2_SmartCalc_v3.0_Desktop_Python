@@ -16,11 +16,11 @@ def math_eval(value):
 def math_pi():
     return math.pi
 
-def math_e():
-    return math.e
-
 def math_ln(value):
     return math.log(types_convert(value))
+
+def math_log(value):
+    return math.log10(types_convert(value))
 
 def math_sin(value):
     return math.sin(types_convert(value))

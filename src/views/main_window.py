@@ -48,9 +48,11 @@ class CalcWindow():
         # Кнопки кредита и депозита
         credit_deposit_buttons()
 
-    def open_graph(self, width, height, title="График", resizable=(0, 0), icon=None):
+    def open_graph(self, width, height, step, title="SmartCalc Graph", resizable=(0, 0)):
         "Метод открытия окна графика"
-        graph = GraphWindow(self.win, width, height, title, resizable, icon)
+        graph = GraphWindow(self.win, width, height, step, title, resizable)
+        graph.run(400, 400, step)
+        # graph.coords_splitting(self.win, mx=400, my=400, step=40)
 
     def press_key(self, event):
         "Метод вызова функций по нажатию клавиш"
