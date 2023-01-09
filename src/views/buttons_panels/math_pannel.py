@@ -16,4 +16,4 @@ def math_pannel(parent, x, y):
     CalcButton("win", "atan", "#ABA9A9", 3, 1, func.press_atan).place(width=65, height=42, x=x + 95, y=y + 260)
     CalcButton("win", "sqrt", "#ABA9A9", 3, 1, func.press_sqrt).place(width=65, height=42, x=x + 170, y=y + 260)
     CalcButton("win", "log", "#ABA9A9", 3, 1, func.press_log).place(width=65, height=42, x=x + 20, y=y + 310)
-    CalcButton("win", "graph", "#ABA9A9", 3, 1, func.open_graph).place(width=140, height=42, x=x + 95, y=y + 310)
+    CalcButton("win", "graph", "#ABA9A9", 3, 1, func.open_graph()).place(width=140, height=42, x=x + 95, y=y + 310)
