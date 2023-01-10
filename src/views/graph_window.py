@@ -1,3 +1,4 @@
+import time
 import numpy as np
 from tkinter import *
 from matplotlib.figure import Figure
@@ -7,8 +8,7 @@ class GraphWindow:
     "Класс окна графиков"
     def __init__(self, parent, width, height, step, title, resizable=(0, 0)):
         super().__init__()
-        mx = 400
-        my = 400
+        self.command = False
         self.width = width
         self.icon = None
         self.gwin = Toplevel(parent)
@@ -22,38 +22,35 @@ class GraphWindow:
         self.entry_x = Entry(self.entry_frame, width=10)
         self.entry_x.insert(0, "-5")
         self.entry_x.pack()
-        self.entry_y = Entry(self.entry_frame, width=10)
-        self.entry_y.insert(0, "5")
-        self.entry_y.pack()
-        # self.recount = GraphFunctions(self)
-        # self.func = self.recount.graph_recount(self)
-        # Секция вывода
-        # self.recount = Button(self.entry_frame, text="Пересчитать", width=10, command = self.func)
-        # self.recount.pack()
-        # Секция графика
-        # self.recount.pack()
+        self.entry_func = Entry(self.entry_frame, width=10)
+        self.entry_func.insert(0, "x ** 2 - y ** 2")
+        self.entry_func.pack()
 
-    # def button
-
-    def graphic_show(self, x):
+    def graphic_show(self):
+        # y = self.entry_x.get()
+        func = self.entry_func.get()
         fig = Figure(figsize = (5, 5), dpi = 100)
-        x = 2
-        y = [i**2 for i in range(40)]
-        plot1 = fig.add_subplot(111)
-        plot1.plot(y)
-        plot1.grid(which='major')
-        plot1.grid(which='minor', linestyle=':')
-        plot1.minorticks_on()
-        canvas = FigureCanvasTkAgg(fig, master = self.gwin)
-        canvas.draw()
-        canvas.get_tk_widget().pack()
-        toolbar = NavigationToolbar2Tk(canvas, self.gwin)
-        toolbar.update()
-        canvas.get_tk_widget().pack()
+        # y = [i**2 for i in range(40)]
+        x, y = np.meshgrid(np.linspace(-5, 5, 100), np.linspace(-5, 5, 100))
+        self.plot1 = fig.add_subplot(111)
+        z = x ** 2 - y ** 2
+        self.plot1.plot(x, y, func)
+        self.plot1.grid(which='major')
+        self.plot1.grid(which='minor', linestyle=':')
+        self.plot1.minorticks_on()
+        self.canvas = FigureCanvasTkAgg(fig, master = self.gwin)
+        self.canvas.draw()
+        self.canvas.get_tk_widget().pack()
+
+    def graphic_del(self):
+        self.canvas.get_tk_widget.destroy()
 
     def recount(self):
-        print("recount")
-        self.graphic_show()
+        if self.command == False:
+            self.graphic_show()
+            self.command = True
+        else:
+            self.graphic_del()
 
     def graph_button(self):
         self.button = Button(self.entry_frame, text="Построить график", width=13, command=self.recount)
