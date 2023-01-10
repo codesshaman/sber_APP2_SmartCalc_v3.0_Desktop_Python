@@ -19,55 +19,55 @@ class GraphWindow:
         # Секция ввода
         self.entry_frame = Frame(self.gwin, borderwidth=2, relief=RIDGE)
         self.entry_frame.pack(padx=10, pady=10, ipadx=15, ipady=5, fill=X)
-        self.entry_x = Spinbox(self.entry_frame, from_=0, to=10.0, increment=0.1, width=10).pack()
-        self.entry_y = Spinbox(self.entry_frame, from_=0, to=10.0, increment=0.1, width=10).pack()
-
-        # self.x1 = entry_x.get()
-        # Поля ввода
-        # xvar = StringVar(value="5.0")
-        # self.entry_x = Spinbox(self.entry_frame, from_=-10.0, to=10.0,
-        #                        increment=0.1, width=10, bg="#b0b0b0",
-        #                        command=self.choose_x(self))
-        # self.entry_x.pack()
+        self.entry_x = Entry(self.entry_frame, width=10)
+        self.entry_x.insert(0, "-5")
+        self.entry_x.pack()
+        self.entry_y = Entry(self.entry_frame, width=10)
+        self.entry_y.insert(0, "5")
+        self.entry_y.pack()
+        # self.recount = GraphFunctions(self)
+        # self.func = self.recount.graph_recount(self)
+        # Секция вывода
+        # self.recount = Button(self.entry_frame, text="Пересчитать", width=10, command = self.func)
+        # self.recount.pack()
         # Секция графика
-        # self.graphic_frame = Canvas(self.gwin, width=mx, height=my, relief=RIDGE)
-        # self.graphic_frame.create_line(0, my / 2, mx, my / 2, fill="#6b0f0f", arrow=LAST)
-        # self.graphic_frame.create_line(mx / 2, 0, mx / 2, my, fill="#6b0f0f", arrow=BOTH)
-        # self.graphic_frame.pack(padx=10, pady=10)
-        # # Деления на осях координат
-        # for i in range(0, max(mx, my), step):
-        #     self.graphic_frame.create_line(i, my/2 - 5, i, my/2 + 5, fill="#6b0f0f")
-        #     self.graphic_frame.create_line(mx / 2 - 5, i, mx / 2 + 5, i, fill="#6b0f0f")
-        # График функции
-    def graphic_show(self):
-  
-        # the figure that will contain the plot
+        # self.recount.pack()
+
+    # def button
+
+    def graphic_show(self, x):
         fig = Figure(figsize = (5, 5), dpi = 100)
-        # list of squares
+        x = 2
         y = [i**2 for i in range(40)]
-        # adding the subplot
         plot1 = fig.add_subplot(111)
-        # plotting the graph
         plot1.plot(y)
-        plot1.grid()
-        # creating the Tkinter canvas
-        # containing the Matplotlib figure
-        canvas = FigureCanvasTkAgg(fig, master = self.gwin)  
+        plot1.grid(which='major')
+        plot1.grid(which='minor', linestyle=':')
+        plot1.minorticks_on()
+        canvas = FigureCanvasTkAgg(fig, master = self.gwin)
         canvas.draw()
-        # placing the canvas on the Tkinter window
         canvas.get_tk_widget().pack()
-        # creating the Matplotlib toolbar
         toolbar = NavigationToolbar2Tk(canvas, self.gwin)
         toolbar.update()
-        # placing the toolbar on the Tkinter window
         canvas.get_tk_widget().pack()
+
+    def recount(self):
+        print("recount")
+        self.graphic_show()
+
+    def graph_button(self):
+        self.button = Button(self.entry_frame, text="Построить график", width=13, command=self.recount)
+        self.button.pack()
 
     def graphic_params(self):
         print("Params")
+
+    def get_value(self):
+        self.entry_x.get()
 
     def __del__(self):
         "Метод удаления окна графика"
 
     def run(self, mx, my, step):
         self.entry_frame.pack()
-        self.graphic_show()
+        self.graph_button()
