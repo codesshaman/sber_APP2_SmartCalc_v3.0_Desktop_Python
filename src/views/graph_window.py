@@ -1,5 +1,6 @@
 import time
 import numpy as np
+import numexpr as ne
 from tkinter import *
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
@@ -23,34 +24,52 @@ class GraphWindow:
         self.entry_x.insert(0, "-5")
         self.entry_x.pack()
         self.entry_func = Entry(self.entry_frame, width=10)
-        self.entry_func.insert(0, "x ** 2 - y ** 2")
+        self.entry_func.insert(0, "x^2")
         self.entry_func.pack()
 
-    def graphic_show(self):
-        # y = self.entry_x.get()
-        func = self.entry_func.get()
-        fig = Figure(figsize = (5, 5), dpi = 100)
-        # y = [i**2 for i in range(40)]
-        x, y = np.meshgrid(np.linspace(-5, 5, 100), np.linspace(-5, 5, 100))
-        self.plot1 = fig.add_subplot(111)
-        z = x ** 2 - y ** 2
-        self.plot1.plot(x, y, func)
-        self.plot1.grid(which='major')
-        self.plot1.grid(which='minor', linestyle=':')
-        self.plot1.minorticks_on()
-        self.canvas = FigureCanvasTkAgg(fig, master = self.gwin)
-        self.canvas.draw()
-        self.canvas.get_tk_widget().pack()
+    def recount(self):
+        if self.command == True:
+            func = self.entry_func.get()
+            fig = Figure(figsize = (5, 5), dpi = 100)
+            # y = [i**2 for i in range(40)]
+            x_vals = np.arange(-5, 5, 100)
+            y = []
+            func = func.replace('^', '**').strip('')
+            func = func.replace('X', 'x')
+            for x in x_vals:
+                y.append(ne.evaluate(func))
+            # plot_instance = axes.plot(x_vals, y, '-', lw=1)
+            # axes.set_xlim(-5, 5)
+            # axes.set_ylim(-5, 5)
+            # axes.legend(legend, loc='best', )
+            self.plot1 = fig.add_subplot(111)
+            self.plot1.plot(x_vals, y, lw=1)
+            self.plot1.grid(which='major')
+            self.plot1.grid(which='minor', linestyle=':')
+            self.plot1.minorticks_on()
+            self.canvas = FigureCanvasTkAgg(fig, master = self.gwin)
+            self.canvas.draw()
+            self.canvas.get_tk_widget().pack()
+            self.command = True
+        else:
+            # self.plot1.destroy()
+            func = self.entry_func.get()
+            fig = Figure(figsize=(5, 5), dpi=100)
+            # y = [i**2 for i in range(40)]
+            x, y = np.meshgrid(np.linspace(-5, 5, 100), np.linspace(-5, 5, 100))
+            self.plot1 = fig.add_subplot(111)
+            z = eval(func)
+            self.plot1.plot(x, y, z)
+            self.plot1.grid(which='major')
+            self.plot1.grid(which='minor', linestyle=':')
+            self.plot1.minorticks_on()
+            self.canvas = FigureCanvasTkAgg(fig, master=self.gwin)
+            self.canvas.draw()
+            self.canvas.get_tk_widget().pack()
+            self.command = True
 
     def graphic_del(self):
         self.canvas.get_tk_widget.destroy()
-
-    def recount(self):
-        if self.command == False:
-            self.graphic_show()
-            self.command = True
-        else:
-            self.graphic_del()
 
     def graph_button(self):
         self.button = Button(self.entry_frame, text="Построить график", width=13, command=self.recount)
