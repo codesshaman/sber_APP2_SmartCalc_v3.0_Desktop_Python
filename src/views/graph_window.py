@@ -1,8 +1,12 @@
-import time
+import os
+from math import *
 import numpy as np
 import numexpr as ne
 from tkinter import *
+import matplotlib.pyplot as plt
+import matplotlib.style as mplstyle
 from matplotlib.figure import Figure
+from matplotlib import colors as mcolors
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 
 class GraphWindow:

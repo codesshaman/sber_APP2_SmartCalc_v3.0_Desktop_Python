@@ -1,6 +1,7 @@
 from tkinter import *
+from presenter.graph_function import *
 from views.buttons_panels.math_pannel import math_pannel
-from views.graph_window import GraphWindow
+from views.graph_window import *
 from views.buttons_panels.numbers_pannel import nums_pannel
 from presenter.buttons_functions.num_buttons_functions import *
 from presenter.buttons_functions.math_buttons_functions import *
@@ -50,6 +51,7 @@ class CalcWindow():
 
     def open_graph(self, width, height, step, title="SmartCalc Graph", resizable=(0, 0)):
         "Метод открытия окна графика"
+        # graph = vp_start_gui(self.win)
         graph = GraphWindow(self.win, width, height, step, title, resizable)
         graph.run(400, 400, step)
         # graph.coords_splitting(self.win, mx=400, my=400, step=40)
@@ -58,7 +60,7 @@ class CalcWindow():
         "Метод вызова функций по нажатию клавиш"
         # print(event)
         func = NumButtonsActions(self)
-        matf = MathButtonsActions(self)
+        # matf = MathButtonsActions(self)
         if event.char in '0123456789+-*/()^%':
             self.display(event.char)
         elif event.char == "\r":
