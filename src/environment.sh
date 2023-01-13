@@ -14,3 +14,4 @@ if [ ! -f "requirements.txt" ]; then
     pip freeze
 fi
 source venv/bin/activate
+pip install --upgrade pip

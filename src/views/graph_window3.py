@@ -43,6 +43,9 @@ class new_graph:
         self.stepsize = 1
         # Цвет графика
         self.color_input = '#FF0000'
+        # *****************************
+        # *****************************
+        # *****************************
         self.graph_canvas = Canvas(top)
         self.graph_canvas.place(relx=0.04, rely=0.05, relheight=0.70, relwidth=0.69)
         self.graph_canvas.configure(background=_bgcolorlight)
@@ -51,6 +54,9 @@ class new_graph:
         self.graph_canvas.configure(selectbackground="#c4c4c4")
         self.graph_canvas.configure(width=394)
         # self.graph_canvas.bind('<Configure>', self.resize_plot)
+        # *****************************
+        # *****************************
+        # *****************************
 
         self.fx = Entry(top)
         self.fx.place(relx=0.11, rely=0.82, relheight=0.05, relwidth=0.53)

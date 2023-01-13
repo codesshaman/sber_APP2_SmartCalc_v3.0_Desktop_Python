@@ -1,17 +1,20 @@
-import os
-from math import *
-import numpy as np
-import numexpr as ne
 from tkinter import *
-import matplotlib.pyplot as plt
-import matplotlib.style as mplstyle
-from matplotlib.figure import Figure
-from matplotlib import colors as mcolors
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+try:
+    import ttk
+    py3 = 0
+except ImportError:
+    import tkinter.ttk as ttk
+    py3 = 1
+
+from views.graphic_window import gui_support
+
+def destroy_app(root):
+    root.destroy()
+    exit(0)
 
 class GraphWindow:
     "Класс окна графиков"
-    def __init__(self, parent, width, height, step, title, resizable=(0, 0)):
+    def __init__(self, parent, width, height, title, resizable=(0, 0)):
         super().__init__()
         self.command = False
         self.width = width
@@ -23,71 +26,39 @@ class GraphWindow:
         self.gwin.configure(bg='gray')
         # Секция ввода
         self.entry_frame = Frame(self.gwin, borderwidth=2, relief=RIDGE)
-        self.entry_frame.pack(padx=10, pady=10, ipadx=15, ipady=5, fill=X)
-        self.entry_x = Entry(self.entry_frame, width=10)
-        self.entry_x.insert(0, "-5")
-        self.entry_x.pack()
-        self.entry_func = Entry(self.entry_frame, width=10)
-        self.entry_func.insert(0, "x^2")
-        self.entry_func.pack()
+        self.entry_frame.pack(padx=10, pady=10, ipadx=5, ipady=5, fill=X)
+        # Надпись "f(x)="
+        self.labelfx = Label(self.entry_frame)
+        self.labelfx.place(relx=0.04, rely=0.06, height=18, width=35)
+        self.labelfx.configure(text='''f(x)=''')
+        self.labelfx.configure(fg='#000000')
+        self.labelfx.configure(background='#c4c4c4')
+        # Поле ввода
+        self.fx = Entry(self.entry_frame, width=37)
+        self.fx.insert(0, "(x**2)-(7**x)")
+        self.fx.pack()
+        # Кнопка
+        self.bt_plot = Button(self.entry_frame, text="Построить график", width=13, command=self.toPlot)
+        self.bt_plot.pack()
+        # Холст
+        self.graph_canvas = Canvas(self.gwin)
+        self.graph_canvas.place(relx=0.04, rely=0.24, relheight=0.70, relwidth=0.92)
+        self.graph_canvas.configure(background='#b0b0b0')
+        self.graph_canvas.configure(borderwidth="2")
+        self.graph_canvas.configure(relief=RIDGE)
+        self.graph_canvas.configure(selectbackground="#c4c4c4")
+        self.graph_canvas.configure(width=394)
+        self.protocol('WM_DELETE_WINDOW', lambda: (self.gwin.destroy()))
 
-    def recount(self):
-        if self.command == True:
-            func = self.entry_func.get()
-            fig = Figure(figsize = (5, 5), dpi = 100)
-            # y = [i**2 for i in range(40)]
-            x_vals = np.arange(-5, 5, 100)
-            y = []
-            func = func.replace('^', '**').strip('')
-            func = func.replace('X', 'x')
-            for x in x_vals:
-                y.append(ne.evaluate(func))
-            # plot_instance = axes.plot(x_vals, y, '-', lw=1)
-            # axes.set_xlim(-5, 5)
-            # axes.set_ylim(-5, 5)
-            # axes.legend(legend, loc='best', )
-            self.plot1 = fig.add_subplot(111)
-            self.plot1.plot(x_vals, y, lw=1)
-            self.plot1.grid(which='major')
-            self.plot1.grid(which='minor', linestyle=':')
-            self.plot1.minorticks_on()
-            self.canvas = FigureCanvasTkAgg(fig, master = self.gwin)
-            self.canvas.draw()
-            self.canvas.get_tk_widget().pack()
-            self.command = True
-        else:
-            # self.plot1.destroy()
-            func = self.entry_func.get()
-            fig = Figure(figsize=(5, 5), dpi=100)
-            # y = [i**2 for i in range(40)]
-            x, y = np.meshgrid(np.linspace(-5, 5, 100), np.linspace(-5, 5, 100))
-            self.plot1 = fig.add_subplot(111)
-            z = eval(func)
-            self.plot1.plot(x, y, z)
-            self.plot1.grid(which='major')
-            self.plot1.grid(which='minor', linestyle=':')
-            self.plot1.minorticks_on()
-            self.canvas = FigureCanvasTkAgg(fig, master=self.gwin)
-            self.canvas.draw()
-            self.canvas.get_tk_widget().pack()
-            self.command = True
-
-    def graphic_del(self):
-        self.canvas.get_tk_widget.destroy()
-
-    def graph_button(self):
-        self.button = Button(self.entry_frame, text="Построить график", width=13, command=self.recount)
-        self.button.pack()
-
-    def graphic_params(self):
-        print("Params")
-
-    def get_value(self):
-        self.entry_x.get()
+    def toPlot(self):
+        "Метод отрисовки графика"
+        gui_support.Plot(self.fx.get(), range(1, 100, 1), '#FF0000',
+                         self.graph_canvas, '-', '')
 
     def __del__(self):
         "Метод удаления окна графика"
+        # root = parent
+        self.protocol('WM_DELETE_WINDOW', destroy_app(self))
 
     def run(self, mx, my, step):
         self.entry_frame.pack()
-        self.graph_button()

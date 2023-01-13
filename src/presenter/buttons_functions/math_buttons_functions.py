@@ -65,4 +65,4 @@ class MathButtonsActions():
         self.parent.display(math_power(value))
 
     def open_graph(self):
-        self.parent.open_graph(425, 500, 30)
+        self.parent.open_graph(425, 444, 30)

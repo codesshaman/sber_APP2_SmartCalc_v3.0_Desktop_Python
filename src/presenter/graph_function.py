@@ -25,7 +25,6 @@ from model import plotutil as plu
 # Global variable to check if any function has been plotted
 plotted = False
 
-
 def Plot(fx, xpoints, color_name, canvas, line_style, file_path):
 
     global plotted
