@@ -6,7 +6,8 @@ except ImportError:
     import tkinter.ttk as ttk
     py3 = 1
 
-from views.graphic_window import gui_support
+from presenter.graph_functions import canvas_plotter
+
 
 def destroy_app(root):
     root.destroy()
@@ -48,17 +49,17 @@ class GraphWindow:
         self.graph_canvas.configure(relief=RIDGE)
         self.graph_canvas.configure(selectbackground="#c4c4c4")
         self.graph_canvas.configure(width=394)
-        self.protocol('WM_DELETE_WINDOW', lambda: (self.gwin.destroy()))
+        # self.protocol(command=lambda: self.gwin.destroy())
+
+    def destroy(self):
+        self.gwin.destroy()
 
     def toPlot(self):
         "Метод отрисовки графика"
-        gui_support.Plot(self.fx.get(), range(1, 100, 1), '#FF0000',
-                         self.graph_canvas, '-', '')
+        canvas_plotter.Plot(self.fx.get(), range(1, 100, 1), self.graph_canvas, '-', '')
+
+    def run(self):
+        self.entry_frame.pack()
 
     def __del__(self):
         "Метод удаления окна графика"
-        # root = parent
-        self.protocol('WM_DELETE_WINDOW', destroy_app(self))
-
-    def run(self, mx, my, step):
-        self.entry_frame.pack()

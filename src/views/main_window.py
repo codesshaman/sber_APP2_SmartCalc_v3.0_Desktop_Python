@@ -1,10 +1,7 @@
-from tkinter import *
-from presenter.graph_function import *
 from views.buttons_panels.math_pannel import math_pannel
 from views.graph_window import *
 from views.buttons_panels.numbers_pannel import nums_pannel
 from presenter.buttons_functions.num_buttons_functions import *
-from presenter.buttons_functions.math_buttons_functions import *
 from views.buttons_panels.operations_pannel import operations_panel
 from views.credit_deposit_view import credit_deposit_buttons
 
@@ -53,7 +50,7 @@ class CalcWindow():
         "Метод открытия окна графика"
         # graph = vp_start_gui(self.win)
         graph = GraphWindow(self.win, width, height, title, resizable)
-        graph.run(400, 400)
+        graph.run()
         # graph.coords_splitting(self.win, mx=400, my=400, step=40)
 
     def press_key(self, event):

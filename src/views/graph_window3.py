@@ -7,7 +7,7 @@ except ImportError:
     import tkinter.ttk as ttk
     py3 = 1
 
-from views.graphic_window import gui_support
+from presenter.graph_functions import gui_support
 
 darktext = '#808080'
 _bgcolorlight = '#b0b0b0'
