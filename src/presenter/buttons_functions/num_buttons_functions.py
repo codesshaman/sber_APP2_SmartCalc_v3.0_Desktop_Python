@@ -9,9 +9,12 @@ class NumButtonsActions():
         self.counter = self.parent.counter
         self.prew_actions = self.history.read_file()
 
-    def history_clean(self):
+    def counter_clean(self):
         self.parent.counter = 0
 
+    def history_clean(self):
+        self.parent.counter = 0
+        self.history.del_history()
 
     def print_last(self):
         prew_len = len(self.prew_actions)
@@ -28,7 +31,7 @@ class NumButtonsActions():
             self.parent.clean()
             self.parent.counter += 1
             if int(self.parent.counter) >= len(self.prew_actions):
-                self.history_clean()
+                self.counter_clean()
             self.parent.display(self.prew_actions[self.parent.counter])
         else:
             self.parent.clean()
@@ -118,5 +121,5 @@ class NumButtonsActions():
         self.parent.flag = False
         self.parent.clean()
         self.add_to_history(value)
-        self.history_clean()
+        self.counter_clean()
         self.parent.display(math_eval(value))

@@ -9,6 +9,10 @@ class CalcHistory():
         exist = os.path.exists(self.file_path)
         return exist
 
+    def del_history(self):
+        file = open(self.file_path, "w")
+        file.close()
+
     def create_if_not_exist(self):
         if not self.check():
             file = open(self.file_path, "w")

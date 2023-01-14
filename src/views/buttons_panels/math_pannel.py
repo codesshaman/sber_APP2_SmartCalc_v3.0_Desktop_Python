@@ -3,7 +3,7 @@ from presenter.buttons_functions.math_buttons_functions import *
 def math_pannel(parent, x, y):
     "Панель сложных математических операций"
     func = MathButtonsActions(parent)
-    CalcButton("win", "С", "#ABA9A9", 3, 1, func.press_clean).place(width=65, height=42, x=x + 20, y=y + 110)
+    CalcButton("win", "С", "#ABA9A9", 3, 1, func.press_clean_history).place(width=65, height=42, x=x + 20, y=y + 110)
     CalcButton("win", "<=", "#ABA9A9", 3, 1, func.clean_last).place(width=65, height=42, x=x + 95, y=y + 110)
     CalcButton("win", "π", "#ABA9A9", 3, 1, func.press_pi).place(width=65, height=42, x=x + 170, y=y + 110)
     CalcButton("win", "sin", "#ABA9A9", 3, 1, func.press_sin).place(width=65, height=42, x=x + 20, y=y + 160)
@@ -15,5 +15,5 @@ def math_pannel(parent, x, y):
     CalcButton("win", "tan", "#ABA9A9", 3, 1, func.press_tan).place(width=65, height=42, x=x + 20, y=y + 260)
     CalcButton("win", "atan", "#ABA9A9", 3, 1, func.press_atan).place(width=65, height=42, x=x + 95, y=y + 260)
     CalcButton("win", "sqrt", "#ABA9A9", 3, 1, func.press_sqrt).place(width=65, height=42, x=x + 170, y=y + 260)
-    CalcButton("win", "X", "#ABA9A9", 3, 1, func.press_x).place(width=65, height=42, x=x + 20, y=y + 310)
+    CalcButton("win", "X", "#ABA9A9", 3, 1, func.x_func).place(width=65, height=42, x=x + 20, y=y + 310)
     CalcButton("win", "graph", "#ABA9A9", 3, 1, func.open_graph).place(width=140, height=42, x=x + 95, y=y + 310)

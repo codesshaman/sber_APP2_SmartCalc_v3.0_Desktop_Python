@@ -1,13 +1,18 @@
 from model.calculate import *
-
+from presenter.buttons_functions.history import *
 
 class MathButtonsActions():
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
+        self.history = CalcHistory()
 
     def press_clean(self):
         self.parent.clean()
+
+    def press_clean_history(self):
+        self.parent.clean()
+        self.history.del_history()
 
     def clean_last(self):
         self.parent.clean_last()
@@ -68,8 +73,22 @@ class MathButtonsActions():
         self.parent.clean()
         self.parent.display(math_power(value))
 
-    def press_x(self):
-        print("Save as X")
+    def input_x(self):
+        value = self.parent.get()
+        if len(value) > 0:
+            if value != "0":
+                self.parent.x_variable = value
+                self.parent.x_flag = True
+
+    def print_x(self):
+        self.parent.display(self.parent.x_variable)
+
+    def x_func(self):
+        if self.parent.x_flag:
+            self.print_x()
+            self.parent.x_flag = False
+        else:
+            self.input_x()
 
     def open_graph(self):
         self.parent.open_graph(425, 444)

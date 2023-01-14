@@ -1,10 +1,10 @@
-from views.buttons_panels.math_pannel import math_pannel
 from views.graph_window import *
+from views.buttons_panels.math_pannel import math_pannel
 from views.buttons_panels.numbers_pannel import nums_pannel
+from views.credit_deposit_view import credit_deposit_buttons
 from presenter.buttons_functions.num_buttons_functions import *
 from presenter.buttons_functions.math_buttons_functions import *
 from views.buttons_panels.operations_pannel import operations_panel
-from views.credit_deposit_view import credit_deposit_buttons
 
 class CalcWindow():
     "Класс основного окна приложения"
@@ -14,6 +14,8 @@ class CalcWindow():
         self.win = Tk()
         self.counter = 0
         self.flag = False
+        self.x_flag = False
+        self.x_variable = ""
         self.win.title(title)
         self.win.geometry(f"{width}x{height}+200+200")
         self.win.resizable(resizable[0], resizable[1])
@@ -59,21 +61,27 @@ class CalcWindow():
     def press_key(self, event):
         "Метод вызова функций по нажатию клавиш"
         print(event)
-        print(self.flag)
         func = NumButtonsActions(self)
         matf = MathButtonsActions(self)
-        if event.char in '0123456789+-*/()^%.,':
+        if event.char in '0123456789':
+            if self.flag:
+                self.clean()
+                self.flag = False
+            self.display(event.char)
+        elif event.char in '+-*/()^%.,':
             self.display(event.char)
         elif event.char == "\r":
             func.calculate()
         elif event.char == "\x03":
             func.calculate()
         elif event.char == '\x7f':
-            self.clean_last()
+            print("Success")
         elif event.char == '\x08':
             self.clean_last()
         elif event.char in 'cCсС':
             self.clean()
+        elif event.char in 'XxЧч':
+            matf.x_func()
         elif event.char in 'pPзЗ':
             matf.press_pi()
         elif event.char in 'eEуУ':
@@ -81,6 +89,10 @@ class CalcWindow():
         elif event.char == '\uf700':
             func.history_back()
         elif event.char == '\uf701':
+            func.history_for()
+        elif event.char in '[х':
+            func.history_back()
+        elif event.char in ']ъ':
             func.history_for()
 
     def key_catch(self):

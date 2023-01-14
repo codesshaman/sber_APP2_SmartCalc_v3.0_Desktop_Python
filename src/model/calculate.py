@@ -46,8 +46,5 @@ def math_atan(value):
 def math_sqrt(value):
     return smp.sqrt(types_convert(value))
 
-# def math_sqrt(value):
-#     return math.sqrt(types_convert(value))
-
 def math_power(value):
     return pow(types_convert(value), 2)
