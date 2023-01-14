@@ -6,16 +6,10 @@ from matplotlib import colors as mcolors
 
 
 def create_y_values(func, xvals):
-
-    # Create function ordinate values
     yvals = []
     for x in xvals:
-        # try:
         yval = eval(func)
         yvals.append(yval)
-        # except Exception:
-        #     raise InvalidFunctionException('Function is improper, unbale to evaluate function at x = ' + str(x))
-
     return yvals
 
 def plot(func, xpoints, xlabel, ylabel, gui, line_style, file_path):

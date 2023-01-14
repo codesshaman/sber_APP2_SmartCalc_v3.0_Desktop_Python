@@ -2,6 +2,7 @@ from views.buttons_panels.math_pannel import math_pannel
 from views.graph_window import *
 from views.buttons_panels.numbers_pannel import nums_pannel
 from presenter.buttons_functions.num_buttons_functions import *
+from presenter.buttons_functions.math_buttons_functions import *
 from views.buttons_panels.operations_pannel import operations_panel
 from views.credit_deposit_view import credit_deposit_buttons
 
@@ -55,9 +56,9 @@ class CalcWindow():
 
     def press_key(self, event):
         "Метод вызова функций по нажатию клавиш"
-        # print(event)
+        print(event)
         func = NumButtonsActions(self)
-        # matf = MathButtonsActions(self)
+        matf = MathButtonsActions(self)
         if event.char in '0123456789+-*/()^%':
             self.display(event.char)
         elif event.char == "\r":
@@ -74,6 +75,10 @@ class CalcWindow():
             matf.press_pi()
         elif event.char in 'eEуУ':
             matf.press_e()
+        elif event.char == '\uf700':
+            matf.history_back()
+        elif event.char == '\uf701':
+            matf.history_for()
 
     def key_catch(self):
         "Метод захвата нажатий клавиш"

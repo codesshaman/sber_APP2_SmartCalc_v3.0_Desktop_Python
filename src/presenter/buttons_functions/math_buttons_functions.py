@@ -14,6 +14,9 @@ class MathButtonsActions():
     def press_pi(self):
         self.parent.display(math_pi())
 
+    def press_e(self):
+        self.parent.display(math_e())
+
     def press_log(self):
         value = self.parent.get()
         self.parent.clean()

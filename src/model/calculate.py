@@ -16,6 +16,9 @@ def math_eval(value):
 def math_pi():
     return math.pi
 
+def math_e():
+    return math.e
+
 def math_ln(value):
     return math.log(types_convert(value))
 
