@@ -1,5 +1,6 @@
 from model.calculate import *
 
+
 class MathButtonsActions():
     def __init__(self, parent):
         super().__init__()
@@ -66,6 +67,9 @@ class MathButtonsActions():
         value = self.parent.get()
         self.parent.clean()
         self.parent.display(math_power(value))
+
+    def press_x(self):
+        print("Save as X")
 
     def open_graph(self):
         self.parent.open_graph(425, 444)

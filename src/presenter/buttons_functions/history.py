@@ -7,11 +7,12 @@ class CalcHistory():
 
     def check(self):
         exist = os.path.exists(self.file_path)
-        return  exist
+        return exist
 
     def create_if_not_exist(self):
         if not self.check():
             file = open(self.file_path, "w")
+            file.write("0" + '\n')
             file.close()
 
     def read_file(self):
@@ -20,10 +21,10 @@ class CalcHistory():
             cmdlist = [row.strip() for row in file]
         return cmdlist[::-1]
 
-    def write_file(self, operation):
+    def write_file(self, value):
         self.create_if_not_exist()
         file = open(self.file_path, "a")
-        file.write(str(operation) + '\n')
+        file.write(str(value) + '\n')
         file.close()
 
 result = CalcHistory()

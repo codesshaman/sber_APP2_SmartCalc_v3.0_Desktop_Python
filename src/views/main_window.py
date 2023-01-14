@@ -12,6 +12,8 @@ class CalcWindow():
     def __init__(self, width="555", height="444", title="SmartCalc_v3", resizable=(0, 0)):
         super().__init__()
         self.win = Tk()
+        self.counter = 0
+        self.flag = False
         self.win.title(title)
         self.win.geometry(f"{width}x{height}+200+200")
         self.win.resizable(resizable[0], resizable[1])
@@ -57,9 +59,10 @@ class CalcWindow():
     def press_key(self, event):
         "Метод вызова функций по нажатию клавиш"
         print(event)
+        print(self.flag)
         func = NumButtonsActions(self)
         matf = MathButtonsActions(self)
-        if event.char in '0123456789+-*/()^%':
+        if event.char in '0123456789+-*/()^%.,':
             self.display(event.char)
         elif event.char == "\r":
             func.calculate()
@@ -76,9 +79,9 @@ class CalcWindow():
         elif event.char in 'eEуУ':
             matf.press_e()
         elif event.char == '\uf700':
-            matf.history_back()
+            func.history_back()
         elif event.char == '\uf701':
-            matf.history_for()
+            func.history_for()
 
     def key_catch(self):
         "Метод захвата нажатий клавиш"
@@ -103,7 +106,9 @@ class CalcWindow():
 
     def run(self):
         "Метод запуска основного окна"
+        func = NumButtonsActions(self)
         self.open_wigets()
+        func.print_last()
         self.open_buttons()
         self.key_catch()
         self.win.mainloop()
