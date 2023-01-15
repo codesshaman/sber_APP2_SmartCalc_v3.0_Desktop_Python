@@ -63,9 +63,8 @@ class NumButtonsActions():
 
     def press_one(self):
         if self.parent.flag == True:
-            print("Successfully")
-            self.parent.clean()
             self.parent.flag = False
+            self.parent.clean()
         self.parent.display(1)
 
     def press_two(self):

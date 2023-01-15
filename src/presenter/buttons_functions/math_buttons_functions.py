@@ -12,6 +12,7 @@ class MathButtonsActions():
 
     def press_clean_history(self):
         self.parent.clean()
+        self.parent.flag = True
         self.history.del_history()
 
     def clean_last(self):

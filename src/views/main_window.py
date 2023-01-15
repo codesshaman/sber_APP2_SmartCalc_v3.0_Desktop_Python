@@ -65,8 +65,8 @@ class CalcWindow():
         matf = MathButtonsActions(self)
         if event.char in '0123456789':
             if self.flag:
-                self.clean()
                 self.flag = False
+                self.clean()
             self.display(event.char)
         elif event.char in '+-*/()^%.,':
             self.display(event.char)
@@ -75,7 +75,7 @@ class CalcWindow():
         elif event.char == "\x03":
             func.calculate()
         elif event.char == '\x7f':
-            print("Success")
+            self.clean_last()
         elif event.char == '\x08':
             self.clean_last()
         elif event.char in 'cCсС':
