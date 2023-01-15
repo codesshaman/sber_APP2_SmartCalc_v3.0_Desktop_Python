@@ -27,6 +27,7 @@ class NumButtonsActions():
 
     def history_back(self):
         prew_len = len(self.prew_actions)
+        self.parent.flag = True
         if prew_len > 0:
             self.parent.clean()
             self.parent.counter += 1
@@ -38,6 +39,7 @@ class NumButtonsActions():
             self.parent.display(0)
 
     def history_for(self):
+        self.parent.flag = True
         prew_len = len(self.prew_actions)
         if prew_len > 0:
             self.parent.clean()
@@ -50,7 +52,8 @@ class NumButtonsActions():
             self.parent.display(0)
 
     def add_to_history(self, value):
-        self.history.write_file(value)
+        if len(value) > 0:
+            self.history.write_file(value)
 
     def history_read(self):
         self.prew_actions = self.history.read_file()
