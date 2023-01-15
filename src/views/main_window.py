@@ -1,3 +1,4 @@
+from tkinter.messagebox import *
 from views.graph_window import *
 from views.buttons_panels.math_pannel import math_pannel
 from views.buttons_panels.numbers_pannel import nums_pannel
@@ -94,6 +95,8 @@ class CalcWindow():
             func.history_back()
         elif event.char in ']ъ':
             func.history_for()
+        elif event.char in 'рh':
+            self.about()
 
     def key_catch(self):
         "Метод захвата нажатий клавиш"
@@ -115,6 +118,23 @@ class CalcWindow():
     def get(self):
         "Метод захвата содержимого дисплея"
         return self.input_display.get()
+
+    def about(self):
+        showinfo("SmartCalc_v3",
+                 'РЕАЛИЗОВАННЫЙ ФУНКЦИОНАЛ:\n'
+                 '-раздел справки (это окно)\n'
+                 '-окно калькулятора(ну ты его полюбому уже видел)\n'
+                 '-окно графиков(жмякнуть кнопку "graph" перед 0)\n'
+                 '-кредитный калькулятор (кнопка слева снизу)\n'
+                 '-депозитный калькулятор (кнопка справа снизу)\n'
+                 '\n'
+                 'Данное приложение реализовано в рамках федеральной программы развития отечественных '
+                 'вычислительных систем при поддержке ООО "Сбер" и его подразделения "Школа-21".'
+                 '\n'
+                 'Автор и разработчик продукта: '
+                 'jleslee@student.21-school.ru\n'
+                 'Никакие права не защищены.\n'
+                 'Copyright © 2023 Jimmie Leslee')
 
     def run(self):
         "Метод запуска основного окна"

@@ -1,8 +1,10 @@
 import os.path
 
+
 class CalcHistory():
 
-    def __init__(self, file_path='presenter/buttons_functions/.temp/history.txt'):
+    def __init__(self,
+                 file_path='presenter/buttons_functions/.temp/history.txt'):
         self.file_path = file_path
 
     def check(self):
@@ -30,6 +32,3 @@ class CalcHistory():
         file = open(self.file_path, "a")
         file.write(str(value) + '\n')
         file.close()
-
-result = CalcHistory()
-print(result.read_file())

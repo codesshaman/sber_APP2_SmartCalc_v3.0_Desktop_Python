@@ -1,11 +1,12 @@
-from model.calculate import *
-from presenter.buttons_functions.history import *
+from model import calculate as calc
+from presenter.buttons_functions import history
+
 
 class MathButtonsActions():
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
-        self.history = CalcHistory()
+        self.history = history.CalcHistory()
 
     def press_clean(self):
         self.parent.clean()
@@ -19,60 +20,60 @@ class MathButtonsActions():
         self.parent.clean_last()
 
     def press_pi(self):
-        self.parent.display(math_pi())
+        self.parent.display(calc.math_pi())
 
     def press_e(self):
-        self.parent.display(math_e())
+        self.parent.display(calc.math_e())
 
     def press_log(self):
         value = self.parent.get()
         self.parent.clean()
-        self.parent.display(math_log(value))
+        self.parent.display(calc.math_log(value))
 
     def press_sin(self):
         value = self.parent.get()
         self.parent.clean()
-        self.parent.display(math_sin(value))
+        self.parent.display(calc.math_sin(value))
 
     def press_cos(self):
         value = self.parent.get()
         self.parent.clean()
-        self.parent.display(math_cos(value))
+        self.parent.display(calc.math_cos(value))
 
     def press_asin(self):
         value = self.parent.get()
         self.parent.clean()
-        self.parent.display(math_asin(value))
+        self.parent.display(calc.math_asin(value))
 
     def press_acos(self):
         value = self.parent.get()
         self.parent.clean()
-        self.parent.display(math_acos(value))
+        self.parent.display(calc.math_acos(value))
 
     def press_tan(self):
         value = self.parent.get()
         self.parent.clean()
-        self.parent.display(math_tan(value))
+        self.parent.display(calc.math_tan(value))
 
     def press_atan(self):
         value = self.parent.get()
         self.parent.clean()
-        self.parent.display(math_atan(value))
+        self.parent.display(calc.math_atan(value))
 
     def press_ln(self):
         value = self.parent.get()
         self.parent.clean()
-        self.parent.display(math_ln(value))
+        self.parent.display(calc.math_ln(value))
 
     def press_sqrt(self):
         value = self.parent.get()
         self.parent.clean()
-        self.parent.display(math_sqrt(value))
+        self.parent.display(calc.math_sqrt(value))
 
     def press_power(self):
         value = self.parent.get()
         self.parent.clean()
-        self.parent.display(math_power(value))
+        self.parent.display(calc.math_power(value))
 
     def input_x(self):
         value = self.parent.get()

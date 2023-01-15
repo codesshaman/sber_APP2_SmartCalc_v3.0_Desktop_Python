@@ -1,8 +1,6 @@
 import os
-import re
 import matplotlib.pyplot as plt
 import matplotlib.style as mplstyle
-from matplotlib import colors as mcolors
 
 
 def create_y_values(func, xvals):
@@ -12,11 +10,12 @@ def create_y_values(func, xvals):
         yvals.append(yval)
     return yvals
 
+
 def plot(func, xpoints, xlabel, ylabel, gui, line_style, file_path):
     mplstyle.use('default')
     xvals = xpoints
     yvals = create_y_values(func, xvals)
-    plt.plot(xvals, yvals, color='red', linewidth=2.0, linestyle=line_style)
+    plt.plot(xvals, yvals, linestyle=line_style)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     plt.title(r'$ ' + func + ' $')

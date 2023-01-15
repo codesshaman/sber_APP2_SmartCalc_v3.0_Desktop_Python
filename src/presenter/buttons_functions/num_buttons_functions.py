@@ -1,12 +1,13 @@
-from model.calculate import *
-from presenter.buttons_functions.history import *
+from model import calculate as calc
+from presenter.buttons_functions import history
+
 
 class NumButtonsActions():
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
-        self.history = CalcHistory()
         self.counter = self.parent.counter
+        self.history = history.CalcHistory()
         self.prew_actions = self.history.read_file()
 
     def counter_clean(self):
@@ -23,7 +24,6 @@ class NumButtonsActions():
         else:
             self.parent.flag = True
             self.parent.display(0)
-
 
     def history_back(self):
         prew_len = len(self.prew_actions)
@@ -62,7 +62,7 @@ class NumButtonsActions():
         self.parent.display(0)
 
     def press_one(self):
-        if self.parent.flag == True:
+        if self.parent.flag:
             self.parent.flag = False
             self.parent.clean()
         self.parent.display(1)
@@ -121,4 +121,4 @@ class NumButtonsActions():
         self.parent.clean()
         self.add_to_history(value)
         self.counter_clean()
-        self.parent.display(math_eval(value))
+        self.parent.display(calc.math_eval(value))
