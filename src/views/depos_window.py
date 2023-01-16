@@ -9,43 +9,43 @@ class DeposWindow():
         self.dep.resizable(0, 0)
         self.dep.configure(bg='gray', pady=10)
         # Обозначения полей ввода
-        input_rate = tk.Label(self.dep, text="Годовая процентная ставка", bg='gray', padx=10, pady=2)
-        input_rate.grid(row=1, column=1, sticky=tk.W, padx=10, pady=2)
-        input_years = tk.Label(self.dep, text="Количество лет", bg='gray', padx=10, pady=2)
-        input_years.grid(row=2, column=1, sticky=tk.W, padx=10, pady=2)
-        input_sum = tk.Label(self.dep, text="Размер вклада", bg='gray', padx=10, pady=2)
-        input_sum.grid(row=3, column=1, sticky=tk.W, padx=10, pady=2)
-        input_month = tk.Label(self.dep, text="Ежемесячный платёж", bg='gray', padx=10, pady=2)
-        input_month.grid(row=4, column=1, sticky=tk.W, padx=10, pady=2)
-        input_total = tk.Label(self.dep, text="Общая сумма платежа", bg='gray', padx=10, pady=2)
-        input_total.grid(row=5, column=1, sticky=tk.W, padx=10, pady=2)
+        input_one = tk.Label(self.dep, text="Годовая процентная ставка", bg='gray', padx=10, pady=2)
+        input_one.grid(row=1, column=1, sticky=tk.W, padx=10, pady=2)
+        input_two = tk.Label(self.dep, text="Количество лет", bg='gray', padx=10, pady=2)
+        input_two.grid(row=2, column=1, sticky=tk.W, padx=10, pady=2)
+        input_three = tk.Label(self.dep, text="Сумма вклада", bg='gray', padx=10, pady=2)
+        input_three.grid(row=3, column=1, sticky=tk.W, padx=10, pady=2)
+        input_four = tk.Label(self.dep, text="Профит", bg='gray', padx=10, pady=2)
+        input_four.grid(row=4, column=1, sticky=tk.W, padx=10, pady=2)
+        input_five = tk.Label(self.dep, text="Общая сумма", bg='gray', padx=10, pady=2)
+        input_five.grid(row=5, column=1, sticky=tk.W, padx=10, pady=2)
         # Поля для ввода
-        self.annualInterestRate = tk.StringVar()
-        ent_rate_entry = tk.Entry(self.dep,
-                                  textvariable=self.annualInterestRate,
+        self.varOne = tk.StringVar()
+        one_entry = tk.Entry(self.dep,
+                                  textvariable=self.varOne,
                                   bg="#b0b0b0", justify=tk.LEFT)
-        ent_rate_entry.grid(row=1, column=2)
-        self.numberOfYears = tk.StringVar()
-        ent_num_of_years = tk.Entry(self.dep,
-                                    textvariable=self.numberOfYears,
+        one_entry.grid(row=1, column=2)
+        self.varTwo = tk.StringVar()
+        two_entry = tk.Entry(self.dep,
+                                    textvariable=self.varTwo,
                                     bg="#b0b0b0", justify=tk.LEFT)
-        ent_num_of_years.grid(row=2, column=2)
-        self.loanAmountVar = tk.StringVar()
-        ent_rate_entry = tk.Entry(self.dep,
-                                  textvariable=self.loanAmountVar,
+        two_entry.grid(row=2, column=2)
+        self.varThree = tk.StringVar()
+        three_entry = tk.Entry(self.dep,
+                                  textvariable=self.varThree,
                                   bg="#b0b0b0", justify=tk.LEFT)
-        ent_rate_entry.grid(row=3, column=2)
+        three_entry.grid(row=3, column=2)
         # Выходные значения:
-        self.montlyPaymentVar = tk.StringVar()
-        ent_monthly_entry = tk.Label(self.dep,
-                                     textvariable=self.montlyPaymentVar,
+        self.varFour = tk.StringVar()
+        four_entry = tk.Label(self.dep,
+                                     textvariable=self.varFour,
                                      justify=tk.LEFT)
-        ent_monthly_entry.grid(row=4, column=2, sticky=tk.E)
-        self.totalPaymentVar = tk.StringVar()
-        ent_total_entry = tk.Label(self.dep,
-                                   textvariable=self.totalPaymentVar,
+        four_entry.grid(row=4, column=2, sticky=tk.E)
+        self.varTotal = tk.StringVar()
+        five_entry = tk.Label(self.dep,
+                                   textvariable=self.varTotal,
                                    justify=tk.LEFT)
-        ent_total_entry.grid(row=5, column=2, sticky=tk.E)
+        five_entry.grid(row=5, column=2, sticky=tk.E)
         btnCalcPayment = tk.Button(self.dep,
                                    text="Рассчитать",
                                    command=self.calcPayment)
@@ -59,22 +59,20 @@ class DeposWindow():
         canvas['image'] = canvas.image
 
     def calcPayment(self):
-        monthlyPayment = self.getMonthlyPayment(
-            float(self.loanAmountVar.get()),
-            float(self.annualInterestRate.get()) / 1200,
-            int(self.numberOfYears.get()))
+        ProfitCalc = self.TotalProfit(
+            float(self.varThree.get()),
+            float(self.varOne.get()),
+            int(self.varTwo.get()))
 
-        self.montlyPaymentVar.set(format(monthlyPayment, '10.2f'))
-        totalPayment = float(self.montlyPaymentVar.get()) * 12 \
-            * int(self.numberOfYears.get())
+        self.varFour.set(format(ProfitCalc, '10.2f'))
+        totalPayment = float(self.varFour.get()) * int(self.varTwo.get()) + float(self.varThree.get())
 
-        self.totalPaymentVar.set(format(totalPayment, '10.2f'))
+        self.varTotal.set(format(totalPayment, '10.2f'))
 
     # Вычисление ежемесячного платежа
-    def getMonthlyPayment(self, loanAmount, monthlyInterestRate, numberOfYears):
-        monthlyPayment = loanAmount * monthlyInterestRate / \
-            (1 - 1 / (1 + monthlyInterestRate) ** (numberOfYears * 12))
-        return monthlyPayment
+    def TotalProfit(self, varThree, varOne, varTwo):
+        profit = ((varThree * varOne * varTwo)/100)
+        return profit
     def run(self):
         window = self.dep
         window.mainloop()
