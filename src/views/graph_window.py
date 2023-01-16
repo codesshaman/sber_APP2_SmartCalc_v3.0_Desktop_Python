@@ -29,8 +29,8 @@ class GraphWindow:
         self.labelfx.configure(fg='#000000')
         self.labelfx.configure(background='#c4c4c4')
         # Поле ввода
-        self.fx = tk.Entry(self.entry_frame, width=37)
-        self.fx.insert(0, "(x**2)-(7**x)")
+        self.fx = tk.Entry(self.entry_frame, width=35)
+        self.fx.insert(0, "(x**2)*(2**x)")
         self.fx.pack()
         # Кнопка
         self.bt_plot = tk.Button(self.entry_frame,
