@@ -76,6 +76,3 @@ class DeposWindow():
     def run(self):
         window = self.dep
         window.mainloop()
-
-window = DeposWindow()
-window.run()

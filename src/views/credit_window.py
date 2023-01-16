@@ -78,7 +78,3 @@ class CreditWindow():
     def run(self):
         window = self.cred
         window.mainloop()
-
-window = CreditWindow()
-window.run()
-

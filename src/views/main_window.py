@@ -1,9 +1,10 @@
 import tkinter as tk
 from tkinter import messagebox as mb
 from views.graph_window import GraphWindow
+from views.credit_window import CreditWindow
 from views.buttons_panels.math_pannel import math_pannel
 from views.buttons_panels.numbers_pannel import nums_pannel
-from views.credit_deposit_view import credit_deposit_buttons
+from views.buttons_panels.credit_deposit_view import credit_deposit_buttons
 from presenter.buttons_functions import num_buttons_functions
 from presenter.buttons_functions import math_buttons_functions
 from views.buttons_panels.operations_pannel import operations_panel
@@ -57,15 +58,21 @@ class CalcWindow():
         # Панель простых операций
         operations_panel(self, 225, 0)
         # Кнопки кредита и депозита
-        credit_deposit_buttons()
+        credit_deposit_buttons(self)
 
     def open_graph(self, width, height, title="SmartCalc Graph",
                    resizable=(0, 0)):
         "Метод открытия окна графика"
-        # graph = vp_start_gui(self.win)
         graph = GraphWindow(self.win, width, height, title, resizable)
         graph.run()
-        # graph.coords_splitting(self.win, mx=400, my=400, step=40)
+
+    def open_credit(self):
+        credit = CreditWindow()
+        credit.run()
+
+    def open_depos(self):
+        depos = CreditWindow()
+        depos.run()
 
     def press_key(self, event):
         "Метод вызова функций по нажатию клавиш"

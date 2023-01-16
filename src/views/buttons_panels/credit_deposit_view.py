@@ -1,13 +1,14 @@
 from views.buttons_panels.buttons_views import CalcButton
-from presenter.credit_deposit_windows import open_credit_calc_button_press
-from presenter.credit_deposit_windows import open_deposit_calc_button_press
+from presenter.buttons_functions.credit_deposit_windows \
+    import CreditDepositActions
 
 
-def credit_deposit_buttons():
+def credit_deposit_buttons(parent):
     "Кнопки открытия кредитного и депозитного калькулятора"
+    func = CreditDepositActions(parent)
     CalcButton("win", "Credit Calc", "#272727", 3,
-               1, open_credit_calc_button_press)\
+               1, func.open_credit_calc_button_press)\
         .place(width=140, height=42, x=95, y=365)
     CalcButton("win", "Deposit Calc", "#272727", 3,
-               1, open_deposit_calc_button_press)\
+               1, func.open_deposit_calc_button_press)\
         .place(width=140, height=42, x=320, y=365)
