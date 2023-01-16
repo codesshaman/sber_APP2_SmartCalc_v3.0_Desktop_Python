@@ -5,7 +5,7 @@ class CreditWindow():
     def __init__(self):
         self.cred = tk.Tk()
         self.cred.title("Credit Calc")
-        self.cred.geometry("555x200")
+        self.cred.geometry("555x200+200+644")
         self.cred.resizable(0, 0)
         self.cred.configure(bg='gray', pady=10)
         # Обозначения полей ввода

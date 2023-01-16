@@ -5,7 +5,7 @@ class DeposWindow():
     def __init__(self):
         self.dep = tk.Tk()
         self.dep.title("Deposit Calc")
-        self.dep.geometry("555x200")
+        self.dep.geometry("555x200+200+644")
         self.dep.resizable(0, 0)
         self.dep.configure(bg='gray', pady=10)
         # Обозначения полей ввода
