@@ -2,8 +2,8 @@ import tkinter as tk
 from PIL import Image, ImageTk
 
 class CreditWindow():
-    def __init__(self):
-        self.cred = tk.Tk()
+    def __init__(self, parent):
+        self.cred = tk.Toplevel(parent)
         self.cred.title("Credit Calc")
         self.cred.geometry("555x200+200+644")
         self.cred.resizable(0, 0)
@@ -57,6 +57,9 @@ class CreditWindow():
         img = img.subsample(4, 4)
         canvas.image = img
         canvas['image'] = canvas.image
+
+    def destroy(self):
+        self.cred.destroy()
 
     def calcPayment(self):
         monthlyPayment = self.getMonthlyPayment(

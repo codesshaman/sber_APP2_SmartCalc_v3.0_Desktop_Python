@@ -40,6 +40,7 @@ class CalcWindow():
     def __del__(self):
         "Метод удаления основного окна"
 
+
     def open_wigets(self):
         "Метод открытия виджетов"
         # Секция дисплея
@@ -67,11 +68,11 @@ class CalcWindow():
         graph.run()
 
     def open_credit(self):
-        credit = CreditWindow()
+        credit = CreditWindow(self.win)
         credit.run()
 
     def open_depos(self):
-        depos = CreditWindow()
+        depos = CreditWindow(self.win)
         depos.run()
 
     def press_key(self, event):

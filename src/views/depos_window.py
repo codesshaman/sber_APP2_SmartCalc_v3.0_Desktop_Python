@@ -2,8 +2,8 @@ import tkinter as tk
 from PIL import Image, ImageTk
 
 class DeposWindow():
-    def __init__(self):
-        self.dep = tk.Tk()
+    def __init__(self, parent):
+        self.dep = tk.Toplevel(parent)
         self.dep.title("Deposit Calc")
         self.dep.geometry("555x200+200+644")
         self.dep.resizable(0, 0)
@@ -57,6 +57,9 @@ class DeposWindow():
         img = img.subsample(4, 4)
         canvas.image = img
         canvas['image'] = canvas.image
+
+    def destroy(self):
+        self.dep.destroy()
 
     def calcPayment(self):
         ProfitCalc = self.TotalProfit(
