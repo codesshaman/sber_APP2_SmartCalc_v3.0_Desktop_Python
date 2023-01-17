@@ -1,4 +1,5 @@
 from model import calculate as calc
+from presenter.buttons_functions import logs
 from presenter.buttons_functions import history
 
 
@@ -6,6 +7,7 @@ class NumButtonsActions():
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
+        self.logs = logs.CalcLogs()
         self.counter = self.parent.counter
         self.history = history.CalcHistory()
         self.prew_actions = self.history.read_file()
@@ -54,6 +56,10 @@ class NumButtonsActions():
     def add_to_history(self, value):
         if len(str(value)) > 0:
             self.history.write_file(value)
+
+    def write_file(self, value):
+        if len(str(value)) > 0:
+            self.logs.write_file(value)
 
     def history_read(self):
         self.prew_actions = self.history.read_file()
@@ -121,6 +127,7 @@ class NumButtonsActions():
     def calculate(self):
         value = self.parent.get()
         self.parent.flag = False
+        self.write_file(value)
         self.parent.clean()
         self.counter_clean()
         result = calc.math_eval(value)

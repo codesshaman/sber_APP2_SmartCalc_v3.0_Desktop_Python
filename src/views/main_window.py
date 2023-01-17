@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox as mb
 from views.graph_window import GraphWindow
+from presenter.buttons_functions import logs
 from views.credit_window import CreditWindow
 from views.buttons_panels.math_pannel import math_pannel
 from views.buttons_panels.numbers_pannel import nums_pannel
@@ -22,6 +23,7 @@ class CalcWindow():
         self.x_flag = False
         self.x_variable = ""
         self.win.title(title)
+        self.logs = logs.CalcLogs()
         self.win.geometry(f"{width}x{height}+200+200")
         self.win.resizable(resizable[0], resizable[1])
         self.win.configure(bg='gray')
@@ -49,6 +51,9 @@ class CalcWindow():
         self.input_display.pack(side=tk.TOP)
         # Секция кнопок
         self.buttons_frame.place(x=10, y=100, width=535, height=260)
+
+    def clear_logs_file(self):
+        self.logs.clean_old_logs(0)
 
     def open_buttons(self):
         "Методы открытия панелей с кнопками"
@@ -160,5 +165,6 @@ class CalcWindow():
         self.open_wigets()
         func.print_last()
         self.open_buttons()
+        self.clear_logs_file()
         self.key_catch()
         self.win.mainloop()
