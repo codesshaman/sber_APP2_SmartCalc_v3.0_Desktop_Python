@@ -1,5 +1,4 @@
 import tkinter as tk
-from PIL import Image, ImageTk
 
 class DeposWindow():
     def __init__(self, parent):

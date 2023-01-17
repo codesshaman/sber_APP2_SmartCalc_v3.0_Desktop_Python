@@ -1,5 +1,4 @@
 import tkinter as tk
-from PIL import Image, ImageTk
 
 class CreditWindow():
     def __init__(self, parent):

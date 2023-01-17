@@ -52,7 +52,7 @@ class NumButtonsActions():
             self.parent.display(0)
 
     def add_to_history(self, value):
-        if len(value) > 0:
+        if len(str(value)) > 0:
             self.history.write_file(value)
 
     def history_read(self):
@@ -122,6 +122,7 @@ class NumButtonsActions():
         value = self.parent.get()
         self.parent.flag = False
         self.parent.clean()
-        self.add_to_history(value)
         self.counter_clean()
-        self.parent.display(calc.math_eval(value))
+        result = calc.math_eval(value)
+        self.parent.display(result)
+        self.add_to_history(result)

@@ -14,7 +14,10 @@ def types_convert(value):
 
 
 def math_eval(value):
-    return eval(value)
+    if len(str(value)) > 0:
+        return eval(value)
+    else:
+        return 0
 
 
 def math_pi():
