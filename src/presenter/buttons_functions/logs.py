@@ -1,5 +1,6 @@
 import os
 import pytz
+import time
 import datetime
 tz_moscow = pytz.timezone('Europe/Moscow')
 
@@ -11,28 +12,29 @@ class CalcLogs():
         self.current_logfile = self.check()
 
     def clean_old_logs(self, hours):
-        self.create_new_logfile()
         hour = datetime.datetime.now(tz_moscow).strftime('%H')
         h = str(int(hour) - hours)
         curr_h = str(int(hour))
         m = str(datetime.datetime.now(tz_moscow).strftime('%M'))
         s = str(datetime.datetime.now(tz_moscow).strftime('%S'))
         current_date = datetime.datetime.now(tz_moscow).strftime("%d-%m-%Y")
-        current_file = datetime.datetime.strptime(current_date + ' ' + curr_h + ':' + m + ':' + s, '%d-%m-%Y %H:%M:%S')
-        current_file = tz_moscow.localize(current_file)
-        current_file = current_file.strftime('%d-%m-%Y %H:%M:%S')
-        current_file = str(current_file).replace(' ', '-').replace(':', '-')
-        current_file = 'logs_' + current_file
-        rotation = datetime.datetime.strptime(current_date + ' ' + h + ':' + m + ':' + s, '%d-%m-%Y %H:%M:%S')
-        rotation = tz_moscow.localize(rotation)
-        rotation = rotation.strftime('%d-%m-%Y %H:%M:%S')
-        rotation = str(rotation).replace(' ', '-').replace(':', '-')
+        current_time = datetime.datetime.strptime(current_date + ' ' + curr_h + ':' + m + ':' + s, '%d-%m-%Y %H:%M:%S')
+        current_time = tz_moscow.localize(current_time)
+        current_file = current_time.strftime('%d-%m-%Y %H:%M:%S')
+        current_time = str(current_file).replace(' ', '-').replace(':', '-')
+        current_file = 'logs_' + current_time
+        rotation_time = datetime.datetime.strptime(current_date + ' ' + h + ':' + m + ':' + s, '%d-%m-%Y %H:%M:%S')
+        rotation_time = tz_moscow.localize(rotation_time)
+        rotation_timestamp = time.mktime(rotation_time.timetuple())
+        print(rotation_timestamp)
+        rotation_time = rotation_time.strftime('%d-%m-%Y %H:%M:%S')
+        rotation = str(rotation_time).replace(' ', '-').replace(':', '-')
         rotation = 'logs_' + rotation
-        for root, dirs, files in os.walk("logs"):
-            for filename in files:
-                if filename < rotation:
-                    os.remove('logs/' + filename)
-        self.write_current_logfile(current_file)
+        last_timestamp = self.lastlog_to_timestamp()
+        diff = int(last_timestamp) - int(rotation_timestamp)
+        if diff <= 0:
+            self.write_current_logfile(current_file)
+            self.create_new_logfile(current_time)
 
     def check(self):
         filepath = str(self.file_path + '/system_logfile.txt')
@@ -41,19 +43,16 @@ class CalcLogs():
         lastlog = lastlog[0:24]
         return lastlog
 
-    def create_current_filetime(self):
-        h = datetime.datetime.now(tz_moscow).strftime('%H')
-        m = str(datetime.datetime.now(tz_moscow).strftime('%M'))
-        s = str(datetime.datetime.now(tz_moscow).strftime('%S'))
-        current_date = datetime.datetime.now(tz_moscow).strftime("%d-%m-%Y")
-        rotation = datetime.datetime.strptime(current_date + ' ' + h + ':' + m + ':' + s, '%d-%m-%Y %H:%M:%S')
-        rotation = tz_moscow.localize(rotation)
-        rotation = rotation.strftime('%d-%m-%Y %H:%M:%S')
-        rotation = str(rotation).replace(' ', '-').replace(':', '-')
-        return rotation
+    def lastlog_to_timestamp(self):
+        lastlog = self.check()
+        lastlog = lastlog[5:24]
+        date = datetime.datetime.strptime(lastlog, '%d-%m-%Y-%H-%M-%S')
+        date_string = tz_moscow.localize(date)
+        restored_timestamp = time.mktime(date_string.timetuple())
+        return restored_timestamp
 
-    def create_new_logfile(self):
-        filepath = str(self.file_path) + '/logs_' + str(self.create_current_filetime())
+    def create_new_logfile(self, current_time):
+        filepath = str(self.file_path) + '/logs_' + str(current_time)
         file = open(filepath, "a")
         file.write("")
         file.close()
@@ -64,6 +63,7 @@ class CalcLogs():
         file = open(self.file_path + '/system_logfile.txt', "w")
         file.write(str(value) + '\n')
         file.close()
+        self.current_logfile = self.check()
 
     def write_file(self, value):
         filepath = str(self.file_path + '/' + self.current_logfile)
