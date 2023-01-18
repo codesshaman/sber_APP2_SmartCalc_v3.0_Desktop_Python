@@ -82,7 +82,7 @@ class CalcWindow():
 
     def press_key(self, event):
         "Метод вызова функций по нажатию клавиш"
-        print(event)
+        # print(event)
         func = num_buttons_functions.NumButtonsActions(self)
         matf = math_buttons_functions.MathButtonsActions(self)
         if event.char in '0123456789':

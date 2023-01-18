@@ -57,7 +57,7 @@ class NumButtonsActions():
         if len(str(value)) > 0:
             self.history.write_file(value)
 
-    def write_file(self, value):
+    def add_to_logs(self, value):
         if len(str(value)) > 0:
             self.logs.write_file(value)
 
@@ -124,12 +124,26 @@ class NumButtonsActions():
             self.parent.clean()
         self.parent.display(9)
 
+    def dot_null_check(self, value):
+        if type(value) == float:
+            if str(value).find(".") != -1:
+                res = str(value).split('.')
+                if res[1] == "0":
+                    return int(res[0])
+                else:
+                    return value
+        else:
+            return value
+
     def calculate(self):
         value = self.parent.get()
         self.parent.flag = False
-        self.write_file(value)
+        self.add_to_logs(value)
         self.parent.clean()
         self.counter_clean()
         result = calc.math_eval(value)
+        print(type(result))
+        result = self.dot_null_check(result)
+        print(type(result))
         self.parent.display(result)
         self.add_to_history(result)
