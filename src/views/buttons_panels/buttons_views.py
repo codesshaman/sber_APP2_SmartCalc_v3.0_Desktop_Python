@@ -1,5 +1,6 @@
 import tkinter as tk
 
+
 class CalcButton(tk.Button):
     "Класс кнопки"
     def __init__(self, parent, text, bg, fg, width, height, func):

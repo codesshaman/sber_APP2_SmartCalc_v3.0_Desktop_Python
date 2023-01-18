@@ -4,6 +4,7 @@ from presenter import config_functions
 from views.graph_window import GraphWindow
 from presenter.buttons_functions import logs
 from views.credit_window import CreditWindow
+from views.depos_window import DeposWindow
 from views.buttons_panels.math_pannel import math_pannel
 from views.buttons_panels.numbers_pannel import nums_pannel
 from views.buttons_panels.credit_deposit_view import credit_deposit_buttons
@@ -81,7 +82,7 @@ class CalcWindow():
         credit.run()
 
     def open_depos(self):
-        depos = CreditWindow(self.win)
+        depos = DeposWindow(self.win)
         depos.run()
 
     def press_key(self, event):

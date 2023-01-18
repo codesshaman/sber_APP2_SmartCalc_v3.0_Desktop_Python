@@ -37,7 +37,6 @@ class CalcConfig():
         if len(value) > 0:
             return value
 
-
     def get_background(self):
         conf_array = self.read_config()
         for line in conf_array:
@@ -57,10 +56,3 @@ class CalcConfig():
                 value = value[0].strip()
         if len(value) > 0:
             return value
-
-config = CalcConfig()
-print(config.get_fontcolor())
-print(config.get_background())
-print(config.get_rotation())
-result = config.read_config()
-print(result)

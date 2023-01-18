@@ -1,5 +1,4 @@
 import tkinter as tk
-from presenter import config_functions
 
 
 class CreditWindow():
@@ -10,15 +9,20 @@ class CreditWindow():
         self.cred.resizable(0, 0)
         self.cred.configure(bg='gray', pady=10)
         # Обозначения полей ввода
-        input_rate = tk.Label(self.cred, text="Годовая процентная ставка", bg='gray', padx=10, pady=2)
+        input_rate = tk.Label(self.cred, text="Годовая процентная ставка",
+                              bg='gray', padx=10, pady=2)
         input_rate.grid(row=1, column=1, sticky=tk.W, padx=10, pady=2)
-        input_years = tk.Label(self.cred, text="Количество лет", bg='gray', padx=10, pady=2)
+        input_years = tk.Label(self.cred, text="Количество лет",
+                               bg='gray', padx=10, pady=2)
         input_years.grid(row=2, column=1, sticky=tk.W, padx=10, pady=2)
-        input_sum = tk.Label(self.cred, text="Сумма кредита", bg='gray', padx=10, pady=2)
+        input_sum = tk.Label(self.cred, text="Сумма кредита",
+                             bg='gray', padx=10, pady=2)
         input_sum.grid(row=3, column=1, sticky=tk.W, padx=10, pady=2)
-        input_month = tk.Label(self.cred, text="Ежемесячный платёж", bg='gray', padx=10, pady=2)
+        input_month = tk.Label(self.cred, text="Ежемесячный платёж",
+                               bg='gray', padx=10, pady=2)
         input_month.grid(row=4, column=1, sticky=tk.W, padx=10, pady=2)
-        input_total = tk.Label(self.cred, text="Общая сумма платежа", bg='gray', padx=10, pady=2)
+        input_total = tk.Label(self.cred, text="Общая сумма платежа",
+                               bg='gray', padx=10, pady=2)
         input_total.grid(row=5, column=1, sticky=tk.W, padx=10, pady=2)
         # Поля для ввода
         self.annualInterestRate = tk.StringVar()
@@ -26,9 +30,9 @@ class CreditWindow():
                                   textvariable=self.annualInterestRate,
                                   bg="#b0b0b0", justify=tk.LEFT)
         ent_rate_entry.grid(row=1, column=2)
-        self.numberOfYears = tk.StringVar()
+        self.numberYears = tk.StringVar()
         ent_num_of_years = tk.Entry(self.cred,
-                                    textvariable=self.numberOfYears,
+                                    textvariable=self.numberYears,
                                     bg="#b0b0b0", justify=tk.LEFT)
         ent_num_of_years.grid(row=2, column=2)
         self.loanAmountVar = tk.StringVar()
@@ -66,19 +70,20 @@ class CreditWindow():
         monthlyPayment = self.getMonthlyPayment(
             float(self.loanAmountVar.get()),
             float(self.annualInterestRate.get()) / 1200,
-            int(self.numberOfYears.get()))
+            int(self.numberYears.get()))
 
         self.montlyPaymentVar.set(format(monthlyPayment, '10.2f'))
         totalPayment = float(self.montlyPaymentVar.get()) * 12 \
-            * int(self.numberOfYears.get())
+            * int(self.numberYears.get())
 
         self.totalPaymentVar.set(format(totalPayment, '10.2f'))
 
     # Вычисление ежемесячного платежа
-    def getMonthlyPayment(self, loanAmount, monthlyInterestRate, numberOfYears):
+    def getMonthlyPayment(self, loanAmount, monthlyInterestRate, numberYears):
         monthlyPayment = loanAmount * monthlyInterestRate / \
-            (1 - 1 / (1 + monthlyInterestRate) ** (numberOfYears * 12))
+            (1 - 1 / (1 + monthlyInterestRate) ** (numberYears * 12))
         return monthlyPayment
+
     def run(self):
         window = self.cred
         window.mainloop()
