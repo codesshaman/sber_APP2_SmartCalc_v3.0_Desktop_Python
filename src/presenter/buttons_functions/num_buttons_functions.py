@@ -138,7 +138,6 @@ class NumButtonsActions():
     def calculate(self):
         value = self.parent.get()
         self.parent.flag = False
-        self.add_to_logs(value)
         self.parent.clean()
         self.counter_clean()
         result = calc.math_eval(value)
@@ -146,4 +145,5 @@ class NumButtonsActions():
         result = self.dot_null_check(result)
         print(type(result))
         self.parent.display(result)
+        self.add_to_logs(value)
         self.add_to_history(result)

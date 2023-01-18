@@ -34,6 +34,7 @@ class CalcLogs():
         filepath = str(self.file_path + '/system_logfile.txt')
         file = open(filepath, 'r')
         lastlog = file.read()
+        lastlog = lastlog[0:24]
         return lastlog
 
     def create_filetime(self):
@@ -61,9 +62,8 @@ class CalcLogs():
         file.close()
 
     def write_file(self, value):
-        file = open(self.current_logfile, "a")
-        file.write(str(value) + '\n')
+        filepath = str(self.file_path + '/' + self.current_logfile)
+        print(filepath)
+        file = open(filepath, 'a')
+        file.write(str(value) + "\n")
         file.close()
-
-func = CalcLogs()
-func.clean_old_logs(0)
