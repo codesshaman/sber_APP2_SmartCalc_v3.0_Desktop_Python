@@ -4,6 +4,7 @@ import time
 import datetime
 tz_moscow = pytz.timezone('Europe/Moscow')
 
+
 class CalcLogs():
 
     def __init__(self,
@@ -18,12 +19,18 @@ class CalcLogs():
         m = str(datetime.datetime.now(tz_moscow).strftime('%M'))
         s = str(datetime.datetime.now(tz_moscow).strftime('%S'))
         current_date = datetime.datetime.now(tz_moscow).strftime("%d-%m-%Y")
-        current_time = datetime.datetime.strptime(current_date + ' ' + curr_h + ':' + m + ':' + s, '%d-%m-%Y %H:%M:%S')
+        current_time = datetime.datetime.strptime(current_date + ' ' +
+                                                  curr_h + ':' +
+                                                  m + ':' +
+                                                  s, '%d-%m-%Y %H:%M:%S')
         current_time = tz_moscow.localize(current_time)
         current_file = current_time.strftime('%d-%m-%Y %H:%M:%S')
         current_time = str(current_file).replace(' ', '-').replace(':', '-')
         current_file = 'logs_' + current_time
-        rotation_time = datetime.datetime.strptime(current_date + ' ' + h + ':' + m + ':' + s, '%d-%m-%Y %H:%M:%S')
+        rotation_time = datetime.datetime.strptime(current_date + ' ' +
+                                                   h + ':' +
+                                                   m + ':' +
+                                                   s, '%d-%m-%Y %H:%M:%S')
         rotation_time = tz_moscow.localize(rotation_time)
         rotation_timestamp = time.mktime(rotation_time.timetuple())
         print(rotation_timestamp)

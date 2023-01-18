@@ -47,7 +47,6 @@ class CalcWindow():
     def __del__(self):
         "Метод удаления основного окна"
 
-
     def open_wigets(self):
         "Метод открытия виджетов"
         # Секция дисплея

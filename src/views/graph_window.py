@@ -1,5 +1,4 @@
 import tkinter as tk
-from presenter import config_functions
 from presenter.graph_functions import canvas_plotter
 
 
