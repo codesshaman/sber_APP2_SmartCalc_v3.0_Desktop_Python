@@ -27,6 +27,7 @@ class CalcWindow():
         self.logs = logs.CalcLogs()
         self.config = config_functions.CalcConfig()
         self.bg = self.config.get_background()
+        self.rotation = self.config.get_rotation()
         self.win.geometry(f"{width}x{height}+200+200")
         self.win.resizable(resizable[0], resizable[1])
         self.win.configure(bg=self.bg)
@@ -56,7 +57,7 @@ class CalcWindow():
         self.buttons_frame.place(x=10, y=100, width=535, height=260)
 
     def clear_logs_file(self):
-        self.logs.clean_old_logs(0)
+        self.logs.clean_old_logs(int(self.rotation))
 
     def open_buttons(self):
         "Методы открытия панелей с кнопками"
