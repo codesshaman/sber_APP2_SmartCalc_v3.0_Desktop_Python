@@ -26,10 +26,15 @@ class CalcLogs():
             for filename in files:
                 if filename < rotation:
                     os.remove('logs/' + filename)
+        lastlog = self.check()
+        if lastlog != rotation:
+            self.write_current_logfile(rotation)
 
     def check(self):
-        file = open(self.file_path + 'current_logfile')
-        return file.read()
+        filepath = str(self.file_path + '/system_logfile.txt')
+        file = open(filepath, 'r')
+        lastlog = file.read()
+        return lastlog
 
     def create_filetime(self):
         h = datetime.datetime.now(tz_moscow).strftime('%H')
@@ -51,7 +56,7 @@ class CalcLogs():
         return filepath
 
     def write_current_logfile(self, value):
-        file = open(self.file_path + 'current_logfile', "w")
+        file = open(self.file_path + '/system_logfile.txt', "w")
         file.write(str(value) + '\n')
         file.close()
 
