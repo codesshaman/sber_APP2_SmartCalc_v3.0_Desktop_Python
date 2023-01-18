@@ -1,4 +1,6 @@
 import tkinter as tk
+from presenter import config_functions
+
 
 class DeposWindow():
     def __init__(self, parent):

@@ -1,23 +1,26 @@
+from presenter import config_functions
 from views.buttons_panels.buttons_views import CalcButton
 from presenter.buttons_functions.operations_functions import OpButtonsActions
 
 
 def operations_panel(parent, x, y):
     "Панель математических операций"
+    conf = config_functions.CalcConfig()
     func = OpButtonsActions(parent)
-    CalcButton("win", "(", "#ABA9A9", 3, 1, func.press_left_bracket)\
+    fg = conf.get_fontcolor()
+    CalcButton("win", "(", "#ABA9A9", fg, 3, 1, func.press_left_bracket)\
         .place(width=65, height=42, x=x + 20, y=y + 110)
-    CalcButton("win", ")", "#ABA9A9", 3, 1, func.press_right_bracket)\
+    CalcButton("win", ")", "#ABA9A9", fg, 3, 1, func.press_right_bracket)\
         .place(width=65, height=42, x=x + 95, y=y + 110)
-    CalcButton("win", "%", "#ABA9A9", 3, 1, func.press_percent)\
+    CalcButton("win", "%", "#ABA9A9", fg, 3, 1, func.press_percent)\
         .place(width=65, height=42, x=x + 170, y=y + 110)
-    CalcButton("win", "/", "#ABA9A9", 3, 1, func.press_division)\
+    CalcButton("win", "/", "#ABA9A9", fg, 3, 1, func.press_division)\
         .place(width=65, height=42, x=x + 245, y=y + 110)
-    CalcButton("win", "*", "#ABA9A9", 3, 1, func.press_multiplication)\
+    CalcButton("win", "*", "#ABA9A9", fg, 3, 1, func.press_multiplication)\
         .place(width=65, height=42, x=x + 245, y=y + 160)
-    CalcButton("win", "-", "#ABA9A9", 3, 1, func.press_subtraction)\
+    CalcButton("win", "-", "#ABA9A9", fg, 3, 1, func.press_subtraction)\
         .place(width=65, height=42, x=x + 245, y=y + 210)
-    CalcButton("win", "+", "#ABA9A9", 3, 1, func.press_addition)\
+    CalcButton("win", "+", "#ABA9A9", fg, 3, 1, func.press_addition)\
         .place(width=65, height=42, x=x + 245, y=y + 260)
-    CalcButton("win", ".", "#ABA9A9", 3, 1, func.press_dot)\
+    CalcButton("win", ".", "#ABA9A9", fg, 3, 1, func.press_dot)\
         .place(width=65, height=42, x=x + 245, y=y + 310)

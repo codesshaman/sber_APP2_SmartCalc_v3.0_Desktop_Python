@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox as mb
+from presenter import config_functions
 from views.graph_window import GraphWindow
 from presenter.buttons_functions import logs
 from views.credit_window import CreditWindow
@@ -24,9 +25,11 @@ class CalcWindow():
         self.x_variable = ""
         self.win.title(title)
         self.logs = logs.CalcLogs()
+        self.config = config_functions.CalcConfig()
+        self.bg = self.config.get_background()
         self.win.geometry(f"{width}x{height}+200+200")
         self.win.resizable(resizable[0], resizable[1])
-        self.win.configure(bg='gray')
+        self.win.configure(bg=self.bg)
         # self.win.iconbitmap("icon.ico")
         # Секция дисплея
         self.display_frame = tk.LabelFrame(self.win, bg="#808080",
