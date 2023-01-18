@@ -8,7 +8,9 @@ numpy==1.24.1
 packaging==23.0
 Pillow==9.4.0
 pyparsing==3.0.9
+pyinstaller==5.7.0
 python-dateutil==2.8.2
+pyinstaller-hooks-contrib==2022.15
 pytz==2022.7.1
 six==1.16.0
 sympy==1.10.1
