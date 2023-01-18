@@ -35,12 +35,13 @@ class CalcLogs():
         if diff <= 0:
             self.write_current_logfile(current_file)
             self.create_new_logfile(current_time)
+            self.current_logfile = self.check()
 
     def check(self):
+        self.create_if_not_exist()
         filepath = str(self.file_path + '/system_logfile.txt')
         file = open(filepath, 'r')
-        lastlog = file.read()
-        lastlog = lastlog[0:24]
+        lastlog = file.read()[0:24]
         return lastlog
 
     def lastlog_to_timestamp(self):
@@ -50,6 +51,13 @@ class CalcLogs():
         date_string = tz_moscow.localize(date)
         restored_timestamp = time.mktime(date_string.timetuple())
         return restored_timestamp
+
+    def create_if_not_exist(self):
+        exist = os.path.exists(self.file_path + '/system_logfile.txt')
+        if not exist:
+            file = open(self.file_path + '/system_logfile.txt', "w")
+            file.write("logs_12-12-2012-12-12-12" + '\n')
+            file.close()
 
     def create_new_logfile(self, current_time):
         filepath = str(self.file_path) + '/logs_' + str(current_time)
