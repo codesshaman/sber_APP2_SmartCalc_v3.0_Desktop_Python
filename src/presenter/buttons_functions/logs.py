@@ -12,11 +12,17 @@ class CalcLogs():
 
     def clean_old_logs(self, hours):
         self.create_new_logfile()
-        h = datetime.datetime.now(tz_moscow).strftime('%H')
-        h = str(int(h) - hours)
+        hour = datetime.datetime.now(tz_moscow).strftime('%H')
+        h = str(int(hour) - hours)
+        curr_h = str(int(hour))
         m = str(datetime.datetime.now(tz_moscow).strftime('%M'))
         s = str(datetime.datetime.now(tz_moscow).strftime('%S'))
         current_date = datetime.datetime.now(tz_moscow).strftime("%d-%m-%Y")
+        current_file = datetime.datetime.strptime(current_date + ' ' + curr_h + ':' + m + ':' + s, '%d-%m-%Y %H:%M:%S')
+        current_file = tz_moscow.localize(current_file)
+        current_file = current_file.strftime('%d-%m-%Y %H:%M:%S')
+        current_file = str(current_file).replace(' ', '-').replace(':', '-')
+        current_file = 'logs_' + current_file
         rotation = datetime.datetime.strptime(current_date + ' ' + h + ':' + m + ':' + s, '%d-%m-%Y %H:%M:%S')
         rotation = tz_moscow.localize(rotation)
         rotation = rotation.strftime('%d-%m-%Y %H:%M:%S')
@@ -26,9 +32,7 @@ class CalcLogs():
             for filename in files:
                 if filename < rotation:
                     os.remove('logs/' + filename)
-        lastlog = self.check()
-        if lastlog != rotation:
-            self.write_current_logfile(rotation)
+        self.write_current_logfile(current_file)
 
     def check(self):
         filepath = str(self.file_path + '/system_logfile.txt')
@@ -37,7 +41,7 @@ class CalcLogs():
         lastlog = lastlog[0:24]
         return lastlog
 
-    def create_filetime(self):
+    def create_current_filetime(self):
         h = datetime.datetime.now(tz_moscow).strftime('%H')
         m = str(datetime.datetime.now(tz_moscow).strftime('%M'))
         s = str(datetime.datetime.now(tz_moscow).strftime('%S'))
@@ -49,7 +53,7 @@ class CalcLogs():
         return rotation
 
     def create_new_logfile(self):
-        filepath = str(self.file_path) + '/logs_' + str(self.create_filetime())
+        filepath = str(self.file_path) + '/logs_' + str(self.create_current_filetime())
         file = open(filepath, "a")
         file.write("")
         file.close()
