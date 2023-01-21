@@ -10,20 +10,20 @@ class CreditWindow():
         self.cred.configure(bg='gray', pady=10)
         # Обозначения полей ввода
         input_rate = tk.Label(self.cred, text="Годовая процентная ставка",
-                              bg='gray', padx=10, pady=2)
-        input_rate.grid(row=1, column=1, sticky=tk.W, padx=10, pady=2)
+                              bg='gray', padx=5, pady=2)
+        input_rate.grid(row=1, column=1, sticky=tk.W, padx=5, pady=2)
         input_years = tk.Label(self.cred, text="Количество лет",
-                               bg='gray', padx=10, pady=2)
-        input_years.grid(row=2, column=1, sticky=tk.W, padx=10, pady=2)
+                               bg='gray', padx=5, pady=2)
+        input_years.grid(row=2, column=1, sticky=tk.W, padx=5, pady=2)
         input_sum = tk.Label(self.cred, text="Сумма кредита",
-                             bg='gray', padx=10, pady=2)
-        input_sum.grid(row=3, column=1, sticky=tk.W, padx=10, pady=2)
+                             bg='gray', padx=5, pady=2)
+        input_sum.grid(row=3, column=1, sticky=tk.W, padx=5, pady=2)
         input_month = tk.Label(self.cred, text="Ежемесячный платёж",
-                               bg='gray', padx=10, pady=2)
-        input_month.grid(row=4, column=1, sticky=tk.W, padx=10, pady=2)
+                               bg='gray', padx=5, pady=2)
+        input_month.grid(row=4, column=1, sticky=tk.W, padx=5, pady=2)
         input_total = tk.Label(self.cred, text="Общая сумма платежа",
-                               bg='gray', padx=10, pady=2)
-        input_total.grid(row=5, column=1, sticky=tk.W, padx=10, pady=2)
+                               bg='gray', padx=5, pady=2)
+        input_total.grid(row=5, column=1, sticky=tk.W, padx=5, pady=2)
         # Поля для ввода
         self.annualInterestRate = tk.StringVar()
         ent_rate_entry = tk.Entry(self.cred,
@@ -57,7 +57,7 @@ class CreditWindow():
         btnCalcPayment.grid(row=6, column=2, sticky=tk.E)
         # Изображение
         canvas = tk.Label(self.cred, width=90, height=90)
-        canvas.place(relx=0.73, rely=0.07, relheight=0.72, relwidth=0.25)
+        canvas.place(x=410, y=20, width=130, height=130)
         img = tk.PhotoImage(file="views/img/credit.png")
         img = img.subsample(4, 4)
         canvas.image = img

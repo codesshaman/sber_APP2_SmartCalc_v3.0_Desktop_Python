@@ -10,20 +10,20 @@ class DeposWindow():
         self.dep.configure(bg='gray', pady=10)
         # Обозначения полей ввода
         input_one = tk.Label(self.dep, text="Годовая процентная ставка",
-                             bg='gray', padx=10, pady=2)
-        input_one.grid(row=1, column=1, sticky=tk.W, padx=10, pady=2)
+                             bg='gray', padx=5, pady=2)
+        input_one.grid(row=1, column=1, sticky=tk.W, padx=5, pady=2)
         input_two = tk.Label(self.dep, text="Количество лет",
-                             bg='gray', padx=10, pady=2)
-        input_two.grid(row=2, column=1, sticky=tk.W, padx=10, pady=2)
+                             bg='gray', padx=5, pady=2)
+        input_two.grid(row=2, column=1, sticky=tk.W, padx=5, pady=2)
         input_three = tk.Label(self.dep, text="Сумма вклада",
-                               bg='gray', padx=10, pady=2)
-        input_three.grid(row=3, column=1, sticky=tk.W, padx=10, pady=2)
+                               bg='gray', padx=5, pady=2)
+        input_three.grid(row=3, column=1, sticky=tk.W, padx=5, pady=2)
         input_four = tk.Label(self.dep, text="Профит",
-                              bg='gray', padx=10, pady=2)
-        input_four.grid(row=4, column=1, sticky=tk.W, padx=10, pady=2)
+                              bg='gray', padx=5, pady=2)
+        input_four.grid(row=4, column=1, sticky=tk.W, padx=5, pady=2)
         input_five = tk.Label(self.dep, text="Общая сумма",
-                              bg='gray', padx=10, pady=2)
-        input_five.grid(row=5, column=1, sticky=tk.W, padx=10, pady=2)
+                              bg='gray', padx=5, pady=2)
+        input_five.grid(row=5, column=1, sticky=tk.W, padx=5, pady=2)
         # Поля для ввода
         self.varOne = tk.StringVar()
         one_entry = tk.Entry(self.dep,
@@ -57,7 +57,7 @@ class DeposWindow():
         btnCalcPayment.grid(row=6, column=2, sticky=tk.E)
         # Изображение
         canvas = tk.Label(self.dep, width=90, height=90)
-        canvas.place(relx=0.73, rely=0.07, relheight=0.72, relwidth=0.25)
+        canvas.place(x=410, y=20, width=130, height=130)
         img = tk.PhotoImage(file="views/img/depos.png")
         img = img.subsample(4, 4)
         canvas.image = img
