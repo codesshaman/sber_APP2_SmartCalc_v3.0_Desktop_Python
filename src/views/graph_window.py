@@ -4,7 +4,6 @@ from presenter.graph_functions import canvas_plotter
 
 def destroy_app(root):
     root.destroy()
-    exit(0)
 
 
 class GraphWindow:
