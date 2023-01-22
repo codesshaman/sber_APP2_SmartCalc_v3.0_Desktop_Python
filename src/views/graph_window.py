@@ -10,6 +10,7 @@ class GraphWindow:
     "Класс окна графиков"
     def __init__(self, parent, width, height, title, resizable=(0, 0)):
         super().__init__()
+        print("init GraphWindow")
         self.command = False
         self.width = width
         self.icon = None
@@ -52,6 +53,7 @@ class GraphWindow:
 
     def toPlot(self):
         "Метод отрисовки графика"
+        print("Plot Graph")
         canvas_plotter.Plot(self.fx.get(),
                             range(1, 100, 1),
                             self.graph_canvas, '-', '')
