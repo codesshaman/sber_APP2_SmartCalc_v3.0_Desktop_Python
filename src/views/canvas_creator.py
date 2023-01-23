@@ -12,7 +12,7 @@ def create_y_values(func, xvals):
 
 
 def plot(func, xpoints, xlabel, ylabel, gui, line_style, file_path):
-    print("Plotting")
+    # print("Plotting")
     mplstyle.use('default')
     xvals = xpoints
     yvals = create_y_values(func, xvals)

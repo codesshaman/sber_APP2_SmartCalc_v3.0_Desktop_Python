@@ -10,7 +10,7 @@ class GraphWindow:
     "Класс окна графиков"
     def __init__(self, parent, width, height, title, resizable=(0, 0)):
         super().__init__()
-        print("init GraphWindow")
+        # print("init GraphWindow")
         self.command = False
         self.width = width
         self.icon = None
@@ -48,18 +48,20 @@ class GraphWindow:
         self.graph_canvas.configure(width=394)
         # self.protocol(command=lambda: self.gwin.destroy())
 
-    def destroy(self):
-        self.gwin.destroy()
+    def __del__(self):
+        "Метод удаления окна графика"
+        try:
+            self.gwin.destroy()
+        except:
+            pass
 
     def toPlot(self):
         "Метод отрисовки графика"
-        print("Plot Graph")
+        # print("Plot Graph")
         canvas_plotter.Plot(self.fx.get(),
                             range(1, 100, 1),
                             self.graph_canvas, '-', '')
 
     def run(self):
         self.entry_frame.pack()
-
-    def __del__(self):
-        "Метод удаления окна графика"
+        self.gwin.mainloop()

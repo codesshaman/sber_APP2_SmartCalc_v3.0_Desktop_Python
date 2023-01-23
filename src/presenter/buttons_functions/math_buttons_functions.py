@@ -93,5 +93,5 @@ class MathButtonsActions():
             self.input_x()
 
     def open_graph(self):
-        print("Open Graph")
+        # print("Open Graph")
         self.parent.open_graph(425, 444)

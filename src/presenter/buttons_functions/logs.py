@@ -33,7 +33,7 @@ class CalcLogs():
                                                    s, '%d-%m-%Y %H:%M:%S')
         rotation_time = tz_moscow.localize(rotation_time)
         rotation_timestamp = time.mktime(rotation_time.timetuple())
-        print(rotation_timestamp)
+        # print(rotation_timestamp)
         rotation_time = rotation_time.strftime('%d-%m-%Y %H:%M:%S')
         rotation = str(rotation_time).replace(' ', '-').replace(':', '-')
         rotation = 'logs_' + rotation
@@ -62,6 +62,7 @@ class CalcLogs():
     def create_if_not_exist(self):
         exist = os.path.exists(self.file_path + '/system_logfile.txt')
         if not exist:
+            os.mkdir(self.file_path)
             file = open(self.file_path + '/system_logfile.txt', "w")
             file.write("logs_12-12-2012-12-12-12" + '\n')
             file.close()
@@ -82,7 +83,7 @@ class CalcLogs():
 
     def write_file(self, value):
         filepath = str(self.file_path + '/' + self.current_logfile)
-        print(filepath)
+        # print(filepath)
         file = open(filepath, 'a')
         file.write(str(value) + "\n")
         file.close()
