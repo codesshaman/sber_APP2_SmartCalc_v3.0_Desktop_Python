@@ -12,10 +12,10 @@ class CalcConfig():
     def create_if_not_exist(self):
         if not self.check("presenter/calcconfig.cfg"):
             file = open("presenter/calcconfig.cfg", "w")
-            file.write("graph_window=0      # Открывать график в отдельном окне")
-            file.write('fonts_color=black   # Цвет шрифта\n')
-            file.write('logs_rotation=0     # Период ротации логов в часах\n')
-            file.write('bg_color=gray       # Цвет фона\n')
+            file.write("graph_window=0    # Открывать график в отдельном окне")
+            file.write('fonts_color=black # Цвет шрифта\n')
+            file.write('logs_rotation=0   # Период ротации логов в часах\n')
+            file.write('bg_color=gray     # Цвет фона\n')
             file.close()
 
     def check(self, path):

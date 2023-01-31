@@ -50,10 +50,7 @@ class GraphWindow:
 
     def __del__(self):
         "Метод удаления окна графика"
-        try:
-            self.gwin.destroy()
-        except:
-            pass
+        self.gwin.destroy()
 
     def toPlot(self):
         "Метод отрисовки графика"
