@@ -1,3 +1,4 @@
+attrs==22.2.0
 altgraph==0.17.3
 cycler==0.11.0
 flake8==5.0.4
@@ -16,6 +17,7 @@ pyflakes==2.5.0
 pyinstaller==5.7.0
 pyinstaller-hooks-contrib==2022.15
 pyparsing==3.0.9
+pytest==7.2.2
 python-dateutil==2.8.2
 pytz==2022.7.1
 six==1.16.0
